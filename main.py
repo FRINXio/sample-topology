@@ -121,7 +121,7 @@ def is_device_available(ip, port, device_name="unknown", attempts=1080):
     return False
 
 def createReadyFile():
-    with open('READY', 'w') as f:
+    with open('/tmp/healthy', 'w') as f:
         f.write('sample-topology is ready!')
 
 if __name__ == "__main__":
