@@ -15,3 +15,4 @@ jobs:
           ignore_words_list: test,aks,complies
           check_filenames: true
           check_hidden: false
+          skip: ./.git,./configs
