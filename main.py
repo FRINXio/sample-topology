@@ -3,6 +3,7 @@ import os
 import socket
 import time
 import logging
+import sys
 from ncclient import manager
 from ncclient.xml_ import to_ele
 
@@ -43,8 +44,8 @@ def pushConfigToNetconfTesttool(devices):
             LOG.info("Trying connect to a device {}".format(device["device_name"]))
             if not is_device_available(os.getenv('DOCKER_GWBRIDGE_IP'), device["port"], device["device_name"]):
                 LOG.error("Cannot connect to a device {}".format(device["device_name"]))
-                continue
-            
+                sys.exit(1)
+
             LOG.info("Updating config for device {}".format(device["device_name"]))
             config_file = "configs/netconf/{}/config.xml".format(device["device_name"])
             if os.path.isfile(config_file):
