@@ -24,11 +24,12 @@ def readCsvFile():
 def prepareProcesses(data):
     LOG.info("Preparing processes commands")
     processes = []
+    JAVA_ARGS = os.getenv('JAVA_ARGS', "-Xmx5G")
     for device in data:
         if device["protocol"] == "cli":
             processes.append("python2.7 cli-testtool/mockdevice.py 0.0.0.0 {} 1 ssh /sample-topology/configs/cli/{}.json".format(device["port"],device["device_name"]))
         elif device["protocol"] == "netconf":
-            command = "java -jar {} --schemas-dir schemas/{} --md-sal true --device-count {} --starting-port {}".format(NETCONF_TESTTOOL_PATH, device["schema_name"], device["count_of_devices"], device["starting_port"])
+            command = "java {} -jar {} --schemas-dir schemas/{} --md-sal true --device-count {} --starting-port {}".format(JAVA_ARGS, NETCONF_TESTTOOL_PATH, device["schema_name"], device["count_of_devices"], device["starting_port"])
             if command not in processes:
                 processes.append(command)
     return processes
