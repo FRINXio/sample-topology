@@ -1,4 +1,5 @@
 FROM python:2.7-alpine
+LABEL org.opencontainers.image.source="https://github.com/FRINXio/sample-topology"
 
 RUN apk add git
 
