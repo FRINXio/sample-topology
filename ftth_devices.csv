@@ -1,0 +1,5 @@
+protocol,device_name,port,schema_name,count_of_devices,starting_port
+cli,cisco_IOS,10004,-,-,-
+netconf,ftth_hua1,17300,huawei-n9000-82,1,17300
+netconf,iosxr663_1,17100,cisco-iosxr-663,1,17100
+netconf,olt_mock,17500,olt-mock,1,17500

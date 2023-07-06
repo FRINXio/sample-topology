@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	<equipment xmlns="elisa:polystar:yang:olt:mock">
+		<ont-interface>
+		    <id>1/1/1/1/16</id>
+		    <description>ONT ABC</description>
+		    <serial>ABCD:206FAB25</serial>
+		    <slots>
+			    <slot>
+				    <id>1</id>
+				    <description>slot 1</description>
+			    </slot>
+		    </slots>
+                </ont-interface>
+	</equipment>
+	<vlans xmlns="elisa:polystar:yang:olt:mock">
+		<vlan>
+			<id>100</id>
+		</vlan>
+	</vlans>
+	<ont xmlns="elisa:polystar:yang:olt:mock">
+		<interface>
+			<id>1/1/1/1/16/1</id>
+			<qos-profile>1G</qos-profile>
+			<vlan>100</vlan>
+			<admin-state>true</admin-state>
+		</interface>
+	</ont>
+</config>

@@ -17,181 +17,81 @@
                 </lldp-info>
             </global-lldp>
             <nodes>
-                <node>
-                    <node-name>0/RSP1/CPU0</node-name>
-                    <interfaces>
-                        <interface>
-                            <interface-name>Bundle-Ether12</interface-name>
-                            <port-description>10GE to MND-GT0002-AR151 BE14 - members Te0/0/0/14</port-description>
-                            <interface-name-xr>Bundle-Ether12</interface-name-xr>
-                            <tx-enabled>0</tx-enabled>
-                            <rx-enabled>1</rx-enabled>
-                            <port-id>Bundle-Ether12</port-id>
-                            <local-network-addresses>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <ipv4-address>172.16.1.80</ipv4-address>
-                                        <address-type>ipv4</address-type>
-                                    </address>
-                                    <if-num>50331648</if-num>
-                                </lldp-addr-entry>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <address-type>ipv6</address-type>
-                                        <ipv6-address>2001:730:2200::5474:f609</ipv6-address>
-                                    </address>
-                                    <if-num>268435456</if-num>
-                                </lldp-addr-entry>
-                            </local-network-addresses>
-                            <if-index>4383</if-index>
-                            <tx-state>INIT</tx-state>
-                            <rx-state>WAIT FOR FRAME</rx-state>
-                            <port-id-sub-type>5</port-id-sub-type>
-                        </interface>
-                        <interface>
-                            <interface-name>Bundle-Ether1</interface-name>
-                            <port-description>BPE10</port-description>
-                            <interface-name-xr>Bundle-Ether1</interface-name-xr>
-                            <tx-enabled>1</tx-enabled>
-                            <rx-enabled>1</rx-enabled>
-                            <port-id>Bundle-Ether1</port-id>
-                            <local-network-addresses>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <ipv4-address>172.16.1.80</ipv4-address>
-                                        <address-type>ipv4</address-type>
-                                    </address>
-                                    <if-num>50331648</if-num>
-                                </lldp-addr-entry>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <address-type>ipv6</address-type>
-                                        <ipv6-address>2001:730:2200::5474:f609</ipv6-address>
-                                    </address>
-                                    <if-num>268435456</if-num>
-                                </lldp-addr-entry>
-                            </local-network-addresses>
-                            <if-index>28</if-index>
-                            <tx-state>IDLE</tx-state>
-                            <rx-state>WAIT FOR FRAME</rx-state>
-                            <port-id-sub-type>5</port-id-sub-type>
-                        </interface>
-                        <interface>
-                            <interface-name>Bundle-Ether2</interface-name>
-                            <port-description>MND-GT0002-CR133</port-description>
-                            <interface-name-xr>Bundle-Ether2</interface-name-xr>
-                            <tx-enabled>1</tx-enabled>
-                            <rx-enabled>1</rx-enabled>
-                            <port-id>Bundle-Ether2</port-id>
-                            <local-network-addresses>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <ipv4-address>172.16.1.80</ipv4-address>
-                                        <address-type>ipv4</address-type>
-                                    </address>
-                                    <if-num>50331648</if-num>
-                                </lldp-addr-entry>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <address-type>ipv6</address-type>
-                                        <ipv6-address>2001:730:2200::5474:f609</ipv6-address>
-                                    </address>
-                                    <if-num>268435456</if-num>
-                                </lldp-addr-entry>
-                            </local-network-addresses>
-                            <if-index>29</if-index>
-                            <tx-state>IDLE</tx-state>
-                            <rx-state>WAIT FOR FRAME</rx-state>
-                            <port-id-sub-type>5</port-id-sub-type>
-                        </interface>
-                        <interface>
-                            <interface-name>Bundle-Ether24</interface-name>
-                            <port-description>mnd-gt0001-cs501</port-description>
-                            <interface-name-xr>Bundle-Ether24</interface-name-xr>
-                            <tx-enabled>0</tx-enabled>
-                            <rx-enabled>1</rx-enabled>
-                            <port-id>Bundle-Ether24</port-id>
-                            <local-network-addresses>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <ipv4-address>172.16.1.80</ipv4-address>
-                                        <address-type>ipv4</address-type>
-                                    </address>
-                                    <if-num>50331648</if-num>
-                                </lldp-addr-entry>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <address-type>ipv6</address-type>
-                                        <ipv6-address>2001:730:2200::5474:f609</ipv6-address>
-                                    </address>
-                                    <if-num>268435456</if-num>
-                                </lldp-addr-entry>
-                            </local-network-addresses>
-                            <if-index>31</if-index>
-                            <tx-state>INIT</tx-state>
-                            <rx-state>WAIT FOR FRAME</rx-state>
-                            <port-id-sub-type>5</port-id-sub-type>
-                        </interface>
-                        <interface>
-                            <interface-name>Bundle-Ether25</interface-name>
-                            <port-description>EC5</port-description>
-                            <interface-name-xr>Bundle-Ether25</interface-name-xr>
-                            <tx-enabled>0</tx-enabled>
-                            <rx-enabled>1</rx-enabled>
-                            <port-id>Bundle-Ether25</port-id>
-                            <local-network-addresses>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <ipv4-address>172.16.1.80</ipv4-address>
-                                        <address-type>ipv4</address-type>
-                                    </address>
-                                    <if-num>50331648</if-num>
-                                </lldp-addr-entry>
-                                <lldp-addr-entry>
-                                    <ma-subtype>1</ma-subtype>
-                                    <address>
-                                        <address-type>ipv6</address-type>
-                                        <ipv6-address>2001:730:2200::5474:f609</ipv6-address>
-                                    </address>
-                                    <if-num>268435456</if-num>
-                                </lldp-addr-entry>
-                            </local-network-addresses>
-                            <if-index>32</if-index>
-                            <tx-state>INIT</tx-state>
-                            <rx-state>WAIT FOR FRAME</rx-state>
-                            <port-id-sub-type>5</port-id-sub-type>
-                        </interface>
-                    </interfaces>
-                    <statistics>
-                        <discarded-tl-vs>0</discarded-tl-vs>
-                        <encapsulation-errors>0</encapsulation-errors>
-                        <table-overflow-errors>0</table-overflow-errors>
-                        <bad-packets>0</bad-packets>
-                        <unrecognized-tl-vs>0</unrecognized-tl-vs>
-                        <out-of-memory-errors>0</out-of-memory-errors>
-                        <discarded-packets>0</discarded-packets>
-                        <transmitted-packets>690770</transmitted-packets>
-                        <aged-out-entries>0</aged-out-entries>
-                        <received-packets>0</received-packets>
-                        <queue-overflow-errors>0</queue-overflow-errors>
-                    </statistics>
-                </node>
-                <node>
+                                            <node>
                     <node-name>0/0/CPU0</node-name>
                     <neighbors>
-                        <details>
+			    <details>
+
+
+
+<detail>
+                                <device-id>XE1</device-id>
+				<lldp-neighbor>
+                                    <header-version>0</header-version>
+                                    <enabled-capabilities>R</enabled-capabilities>
+                                    <detail>
+                                        <port-description>BPE10</port-description>
+                                        <time-remaining>114</time-remaining>
+                                        <enabled-capabilities>R</enabled-capabilities>
+                                        <network-addresses>
+                                            <lldp-addr-entry>
+                                                <ma-subtype>1</ma-subtype>
+                                                <address>
+                                                    <ipv4-address>172.16.1.82</ipv4-address>
+                                                    <address-type>ipv4</address-type>
+                                                </address>
+                                                <if-num>1039</if-num>
+                                            </lldp-addr-entry>
+                                            <lldp-addr-entry>
+                                                <ma-subtype>2</ma-subtype>
+                                                <address>
+                                                    <address-type>ipv6</address-type>
+                                                    <ipv6-address>2001:db8:111::1</ipv6-address>
+                                                </address>
+                                                <if-num>1039</if-num>
+                                            </lldp-addr-entry>
+                                        </network-addresses>
+                                        <port-vlan-id>0</port-vlan-id>
+                                        <peer-mac-address>53:23:c2:e8:ec:f8</peer-mac-address>
+                                        <system-name>XE1</system-name>
+                                        <system-capabilities>R</system-capabilities>
+                                        <media-attachment-unit-type>0</media-attachment-unit-type>
+                                        <system-description>Cisco IOS XE Software, Version 6.5.3[Default]
+                                            Copyright (c) 2019 by Cisco Systems, Inc., ASR9K Series</system-description>
+                                    </detail>
+                                    <receiving-parent-interface-name>GigabitEthernet1</receiving-parent-interface-name>
+                                    <mib>
+                                        <port-id-len>14</port-id-len>
+                                        <chassis-id-len>14</chassis-id-len>
+                                        <rem-index>16</rem-index>
+                                        <rem-time-mark>0</rem-time-mark>
+                                        <chassis-id-sub-type>4</chassis-id-sub-type>
+                                        <rem-local-port-num>208</rem-local-port-num>
+                                        <port-id-sub-type>5</port-id-sub-type>
+                                        <combined-capabilities>1048592</combined-capabilities>
+                                    </mib>
+                                    <receiving-interface-name>GigabitEthernet1</receiving-interface-name>
+                                    <device-id>XE1</device-id>
+                                    <chassis-id>2215.7381.sp24</chassis-id>
+                                    <hold-time>120</hold-time>
+                                    <port-id-detail>GigabitEthernet2</port-id-detail>
+                                </lldp-neighbor>
+
+
+                                <interface-name>GigabitEthernet1</interface-name>
+                            </detail>
+
+
+
+
+
+
+
+
                             <detail>
                                 <device-id>fzp-ti3331-gea03.iaji</device-id>
-                                <lldp-neighbor>
+
+				<lldp-neighbor>
                                     <header-version>0</header-version>
                                     <enabled-capabilities>R</enabled-capabilities>
                                     <detail>
@@ -1563,22 +1463,6 @@
                         <transmitted-packets>2981840</transmitted-packets>
                         <aged-out-entries>1</aged-out-entries>
                         <received-packets>3741701</received-packets>
-                        <queue-overflow-errors>0</queue-overflow-errors>
-                    </statistics>
-                </node>
-                <node>
-                    <node-name>0/1/CPU0</node-name>
-                    <statistics>
-                        <discarded-tl-vs>0</discarded-tl-vs>
-                        <encapsulation-errors>0</encapsulation-errors>
-                        <table-overflow-errors>0</table-overflow-errors>
-                        <bad-packets>0</bad-packets>
-                        <unrecognized-tl-vs>0</unrecognized-tl-vs>
-                        <out-of-memory-errors>0</out-of-memory-errors>
-                        <discarded-packets>0</discarded-packets>
-                        <transmitted-packets>0</transmitted-packets>
-                        <aged-out-entries>0</aged-out-entries>
-                        <received-packets>0</received-packets>
                         <queue-overflow-errors>0</queue-overflow-errors>
                     </statistics>
                 </node>

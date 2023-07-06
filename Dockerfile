@@ -10,7 +10,6 @@ RUN apk add --no-cache --upgrade bash
 RUN apk add --update openssh
 RUN apk add --update iptables
 RUN apk add --no-cache netcat-openbsd
-RUN apk add openjdk11
 
 # Install dependencies for ncclient
 RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
@@ -18,13 +17,25 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev libxslt-dev && \
 
 RUN apk add ulogd
 
-WORKDIR /sample-topology
-COPY ./ ./
+# Java 17
+# Using Microsoft's Java 17 compatible with alpine (musl) linux
+RUN wget https://aka.ms/download-jdk/microsoft-jdk-17.0.7-alpine-x64.tar.gz
+RUN tar -xzvf microsoft-jdk-17.0.7-alpine-x64.tar.gz
+RUN ln -sf /jdk-17.0.7+7/bin/java /bin/java
 
+WORKDIR /sample-topology
+
+COPY ./requirements.txt ./requirements.txt
+
+# cli testtool source
 RUN pip install typing
 RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/FRINXio/yang-schemas.git schemas
 RUN git clone --branch v1.3 https://github.com/FRINXio/cli-testtool.git
 
-ADD  https://license.frinx.io/download/netconf-testtool-1.4.2-Oxygen-SR2.4_2_10_rc5-frinxodl-SNAPSHOT-executable.jar /./netconf-testtool/
-RUN chmod +r /./netconf-testtool/netconf-testtool-1.4.2-Oxygen-SR2.4_2_10_rc5-frinxodl-SNAPSHOT-executable.jar
+COPY ./ ./
+
+# netconf testtool binary
+#COPY ./netconf-testtool-5.1.10-SNAPSHOT-executable.jar ./netconf-testtool/netconf-testtool.jar
+ADD  https://license.frinx.io/download/netconf-testtool-5.1.10-SNAPSHOT-executable.jar ./netconf-testtool/netconf-testtool.jar
+RUN chmod +r ./netconf-testtool/netconf-testtool.jar
