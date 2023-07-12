@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-    <mfwd xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-mfwd-cfg">
+            <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ospf-cfg">
+                <processes>
+                        <process>
+                                <process-name>1</process-name>
+                                <default-vrf>
+
+                                        <router-id>2.2.2.2</router-id>
+                                </default-vrf>
+
+                        </process>
+                </processes>
+        </ospf>
+	<mfwd xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-mfwd-cfg">
         <default-context>
             <ipv4>
                 <multicast-forwarding/>

@@ -7,7 +7,7 @@ import sys
 from ncclient import manager
 from ncclient.xml_ import to_ele
 
-NETCONF_TESTTOOL_PATH = "/./netconf-testtool/netconf-testtool-1.4.2-Oxygen-SR2.4_2_10_rc5-frinxodl-SNAPSHOT-executable.jar"
+NETCONF_TESTTOOL_PATH = "./netconf-testtool/netconf-testtool.jar"
 logging.basicConfig(
     level=logging.INFO,
     format="%(levelname)s:%(asctime)s %(message)s",

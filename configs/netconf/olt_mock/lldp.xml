@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edit-oper xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <target>
+        <candidate/>
+    </target>
+    <error-option>rollback-on-error</error-option>
+    <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+
+<lldp xmlns="http://frinx.openconfig.net/yang/lldp">
+	<interfaces>
+		<interface>
+                    <name>eth1/1</name>
+                    <neighbors>
+                        <neighbor>
+                            <id>1</id>
+                            <state>
+                                <id>1</id>
+                                <management-address>172.29.206.201</management-address>
+                                <port-description>Ethernet1/2</port-description>
+                                <port-id>Ethernet1/2</port-id>
+                                <port-id-type>INTERFACE_NAME</port-id-type>
+                                <chassis-id>0bbb.7dfa.xxxx</chassis-id>
+                                <chassis-id-type>MAC_ADDRESS</chassis-id-type>
+                                <system-description>Huawei VRP</system-description>
+				<system-name>N9000-82</system-name>
+                            </state>
+                        </neighbor>
+                    </neighbors>
+                </interface>
+
+                <interface>
+                    <name>eth1/21</name>
+                    <neighbors>
+                        <neighbor>
+                            <id>1</id>
+                            <state>
+                                <id>1</id>
+                                <management-address>172.29.206.241</management-address>
+                                <port-description>Ethernet1/21</port-description>
+                                <port-id>Ethernet1/21</port-id>
+                                <port-id-type>INTERFACE_NAME</port-id-type>
+                                <chassis-id>003a.7dfa.xxxx</chassis-id>
+                                <chassis-id-type>MAC_ADDRESS</chassis-id-type>
+                                <system-description>Cisco Nexus Operating System (NX-OS) Software 9.3(5)
+TAC support: http://www.cisco.com/tac
+Copyright (c) 2002-2020, Cisco Systems, Inc. All rights reserved.</system-description>
+                                <system-name>Nexus1</system-name>
+                            </state>
+                        </neighbor>
+                    </neighbors>
+                </interface>
+                <interface>
+                    <name>eth1/22</name>
+                    <neighbors>
+                        <neighbor>
+                            <id>1</id>
+                            <state>
+                                <id>1</id>
+                                <management-address>172.29.206.241</management-address>
+                                <port-description>Ethernet1/22</port-description>
+                                <port-id>Ethernet1/22</port-id>
+                                <port-id-type>INTERFACE_NAME</port-id-type>
+                                <chassis-id>003a.7dfa.bbbb</chassis-id>
+                                <chassis-id-type>MAC_ADDRESS</chassis-id-type>
+                                <system-description>Cisco Nexus Operating System (NX-OS) Software 9.3(5)
+TAC support: http://www.cisco.com/tac
+Copyright (c) 2002-2020, Cisco Systems, Inc. All rights reserved.</system-description>
+                                <system-name>Nexus1</system-name>
+                            </state>
+                        </neighbor>
+                    </neighbors>
+                </interface>
+            </interfaces>
+    </lldp>
+        </config>
+</edit-oper>
+
