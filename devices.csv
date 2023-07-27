@@ -15,7 +15,4 @@ cli,leaf4,10012,-,-,-
 cli,leaf5,10013,-,-,-
 cli,spine1,10014,-,-,-
 cli,spine2,10015,-,-,-
-netconf,iosxr653_1,17000,cisco-iosxr-653,2,17000
-netconf,iosxr653_2,17001,cisco-iosxr-653,2,17000
-netconf,iosxr663_1,17100,cisco-iosxr-663,1,17100
-netconf,junos_1,17200,junos-16-2021,1,17200
+

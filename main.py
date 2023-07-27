@@ -62,7 +62,7 @@ def pushConfigToNetconfTesttool(devices):
             LOG.info("Device {} is ready".format(device["device_name"]))
 
 def push_operation_data_to_device(port, operation_data):
-    m = manager.connect(host=os.getenv('DOCKER_GWBRIDGE_IP'), port=port, username="frinx",
+    m = manager.connect(host=os.getenv('DOCKER_GWBRIDGE_IP', 'localhost'), port=port, username="frinx",
                         password="frinx", hostkey_verify=False)
 
     netconf_operation_data = open(str(operation_data)).read()

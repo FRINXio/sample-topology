@@ -11,3 +11,16 @@ You can specify requered cli and netconf devices in devices.csv file.
 - count_of_devices - netconf device specific value. Count of devices
 - starting_port - netconf device specific value. First port of netconf testool
 
+### Docker compose setup
+
+```
+docker-compose up -d
+```
+
+### Kubernetes setup
+
+```
+helm repo add frinx https://FRINXio.github.io/helm-charts
+helm install [RELEASE_NAME] frinx/sample-topology
+```
+more info at https://artifacthub.io/packages/helm/frinx-helm-charts/sample-topology
