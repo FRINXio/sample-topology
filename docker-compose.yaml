@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   sample-topology:
+    image: frinx/sample-topology
     build: .
     volumes:
       - ./devices.csv:/sample-topology/devices.csv
