@@ -2,7 +2,8 @@ version: "3.7"
 
 services:
   sample-topology:
-    image: frinx/sample-topology:3.2.0
+    image: frinx/sample-topology
+    build: .
     volumes:
       - ./devices.csv:/sample-topology/devices.csv
     ports:
