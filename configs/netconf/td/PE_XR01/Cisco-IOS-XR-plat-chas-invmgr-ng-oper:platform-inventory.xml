@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edit-oper xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <target>
+        <candidate/>
+    </target>
+    <error-option>rollback-on-error</error-option>
+    <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+	    <platform-inventory xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-plat-chas-invmgr-ng-oper">
+		    <racks>
+			    <rack>
+				    <name>0</name>
+				    <attributes>
+					    <basic-info>
+						    <software-revision>6.6.3</software-revision>
+				    </basic-info>
+
+				    </attributes>
+			    </rack>
+		    </racks>
+	</platform-inventory>
+
+    </config>
+</edit-oper>
