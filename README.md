@@ -16,6 +16,10 @@ You can specify requered cli and netconf devices in devices.csv file.
 ```
 docker-compose up -d
 ```
+To run TD sample topology run this command:
+```
+docker-compose up -d -f docker-compose-td.yaml
+```
 
 ### Kubernetes setup
 

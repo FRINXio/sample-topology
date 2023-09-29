@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-ospf-cfg">
+                <processes>
+                        <process>
+                                <process-name>1</process-name>
+                                <default-vrf>
+
+                                        <router-id>10.2.2.2</router-id>
+                                </default-vrf>
+
+                        </process>
+                </processes>
+    </ospf>
     <mpls-ldp xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-mpls-ldp-cfg">
         <enable/>
         <default-vrf>

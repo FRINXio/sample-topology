@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  sample-topology:
+    image: frinx/sample-topology:td
+    build: .
+    environment:
+      - DOCKER_GWBRIDGE_IP=localhost
+    volumes:
+      - ./devices.csv:/sample-topology/devices.csv
+    ports:
+      - 17000-17200:17000-17200
+      - 10000-10100:10000-10100
+    command:
+      python2.7 main.py
