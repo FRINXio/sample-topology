@@ -18,7 +18,7 @@ docker-compose up -d
 ```
 To run TD sample topology run this command:
 ```
-docker-compose up -d -f docker-compose-td.yaml
+docker-compose -f docker-compose-td.yaml up -d
 ```
 
 ### Kubernetes setup
