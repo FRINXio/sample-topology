@@ -43,7 +43,7 @@ def pushConfigToNetconfTesttool(devices):
     for device in devices:
         if device["protocol"] == "netconf":
             LOG.info("Trying connect to a device {}".format(device["device_name"]))
-            if not is_device_available(os.getenv('DOCKER_GWBRIDGE_IP'), device["port"], device["device_name"]):
+            if not is_device_available(os.getenv('DOCKER_GWBRIDGE_IP', 'localhost'), device["port"], device["device_name"]):
                 LOG.error("Cannot connect to a device {}".format(device["device_name"]))
                 sys.exit(1)
 
