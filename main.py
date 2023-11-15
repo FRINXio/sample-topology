@@ -84,7 +84,7 @@ def get_operation_files_path(device_name):
 
 def push_config_to_device(port, config_file):
     LOG.info("Pushig config to device port: {}".format(str(port)))
-    m = manager.connect(host=os.getenv('DOCKER_GWBRIDGE_IP'), port=port, username="frinx",
+    m = manager.connect(host=os.getenv('DOCKER_GWBRIDGE_IP', 'localhost'), port=port, username="frinx",
                         password="frinx", hostkey_verify=False)
 
     netconf_config = open(str(config_file)).read()
