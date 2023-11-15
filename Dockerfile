@@ -38,6 +38,5 @@ RUN git clone --branch v1.3 https://github.com/FRINXio/cli-testtool.git
 COPY ./ ./
 
 # netconf testtool binary
-#COPY ./netconf-testtool-5.1.10-SNAPSHOT-executable.jar ./netconf-testtool/netconf-testtool.jar
 COPY --from=TESTTOOL /opt/netconf-testtool-executable.jar ./netconf-testtool/netconf-testtool.jar
 RUN chmod +r ./netconf-testtool/netconf-testtool.jar
