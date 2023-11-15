@@ -1,3 +1,5 @@
+FROM frinx/netconf-testtool:5.1.10 as TESTTOOL
+
 FROM python:2.7-alpine
 LABEL org.opencontainers.image.source="https://github.com/FRINXio/sample-topology"
 
@@ -36,6 +38,5 @@ RUN git clone --branch v1.3 https://github.com/FRINXio/cli-testtool.git
 COPY ./ ./
 
 # netconf testtool binary
-#COPY ./netconf-testtool-5.1.10-SNAPSHOT-executable.jar ./netconf-testtool/netconf-testtool.jar
-ADD  https://license.frinx.io/download/netconf-testtool-5.1.10-SNAPSHOT-executable.jar ./netconf-testtool/netconf-testtool.jar
+COPY --from=TESTTOOL /opt/netconf-testtool-executable.jar ./netconf-testtool/netconf-testtool.jar
 RUN chmod +r ./netconf-testtool/netconf-testtool.jar
