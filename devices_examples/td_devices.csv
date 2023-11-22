@@ -1,0 +1,11 @@
+protocol,device_name,port,schema_name,count_of_devices,starting_port
+cli,td/BH_SAOS502,10000,-,-,-
+cli,td/BH_SAOS513,10001,-,-,-
+cli,td/BH_SAOS555,10002,-,-,-
+cli,td/CSR_SAOS511,10003,-,-,-
+cli,td/CSR_SAOS512,10004,-,-,-
+cli,td/CSR_SAOS514,10005,-,-,-
+netconf,td/BB_XR03,17100,cisco-iosxr-653,2,17100
+netconf,td/BB_XR07,17101,cisco-iosxr-653,2,17100
+netconf,td/PE_XR01,17200,cisco-iosxr-663,2,17200
+netconf,td/PE_XR02,17201,cisco-iosxr-663,2,17200
