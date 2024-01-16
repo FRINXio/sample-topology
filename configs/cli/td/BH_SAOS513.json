@@ -1,6 +1,6 @@
 {
     "setting_cmd_delay": 0,
-    "setting_default_prompt": "BH_SAOS513",
+    "setting_default_prompt": "bh_saos513",
     "setting_default_user": "frinx",
     "setting_default_passwd": "frinx",
     "configuration save": "",

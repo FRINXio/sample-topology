@@ -1,6 +1,6 @@
 {
     "setting_cmd_delay": 0,
-    "setting_default_prompt": "CSR_SAOS514",
+    "setting_default_prompt": "csr_saos514",
     "setting_default_user": "frinx",
     "setting_default_passwd": "frinx",
     "configuration save": "",
