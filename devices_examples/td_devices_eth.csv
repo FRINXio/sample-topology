@@ -1,0 +1,5 @@
+protocol,device_name,port,schema_name,count_of_devices,starting_port
+cli,td/ETH_SYNC_ABR1,10010,-,-,-
+cli,td/ETH_SYNC_ABR2,10011,-,-,-
+cli,td/ETH_SYNC_IXREB1,10012,-,-,-
+cli,td/ETH_SYNC_IXRS1,10013,-,-,-
