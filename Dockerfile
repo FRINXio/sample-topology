@@ -1,4 +1,4 @@
-FROM frinx/netconf-testtool:5.1.10 as TESTTOOL
+FROM frinx/netconf-testtool:6.0.0 as TESTTOOL
 
 FROM python:2.7-alpine
 LABEL org.opencontainers.image.source="https://github.com/FRINXio/sample-topology"
@@ -33,7 +33,7 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip install typing
 RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/FRINXio/yang-schemas.git schemas
-RUN git clone --branch v1.3 https://github.com/FRINXio/cli-testtool.git
+RUN git clone --branch v6.0.0 https://github.com/FRINXio/cli-testtool.git
 
 COPY ./ ./
 
