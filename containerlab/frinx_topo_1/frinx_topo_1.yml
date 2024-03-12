@@ -1,0 +1,59 @@
+name: frinx_topo_1
+
+topology:
+  defaults:
+    kind: nokia_sros
+    image: vrnetlab/vr-sros:22.10.R1
+    license: ../frinx_topo_1/sros.license     
+    config:
+      vars:
+        isis_iid: 1
+  nodes:
+    ptp_grandmaster:
+      mgmt-ipv4: 172.20.20.9
+      startup-config: ptp_grandmaster.partial.txt
+    ptp_grandmaster_backup:
+      mgmt-ipv4: 172.20.20.8
+      startup-config: ptp_grandmaster_backup.partial.txt
+    core1:
+      mgmt-ipv4: 172.20.20.11
+      startup-config: core1.partial.txt
+    core2:
+      mgmt-ipv4: 172.20.20.12
+      startup-config: core2.partial.txt
+    PE:
+      mgmt-ipv4: 172.20.20.13
+      startup-config: core2.partial.txt
+    PE2:
+      mgmt-ipv4: 172.20.20.14
+      startup-config: core2.partial.txt
+    PE3:
+      mgmt-ipv4: 172.20.20.15
+      startup-config: core2.partial.txt
+    PE4:
+      mgmt-ipv4: 172.20.20.16
+      startup-config: core2.partial.txt
+    PE5:
+      mgmt-ipv4: 172.20.20.17
+      startup-config: core2.partial.txt
+
+  links:
+    - endpoints: [PE:eth1, core1:eth2]
+    - endpoints: [PE:eth2, core2:eth2]
+    - endpoints: [PE2:eth1, core1:eth3]
+    - endpoints: [PE3:eth1, core2:eth3]
+    - endpoints: [PE4:eth1, core1:eth4]
+    - endpoints: [PE5:eth1, core2:eth4]
+    - endpoints: [PE2:eth2, PE3:eth2]
+    - endpoints: [PE4:eth2, PE5:eth2]
+    - endpoints: [core1:eth1, core2:eth1]
+      vars:
+        port: [1/1/c1/1, 1/1/c1/1]
+    - endpoints: [ptp_grandmaster:eth1, core1:eth5]
+      vars:
+        port: [1/1/c1/1, 1/1/c2/1]
+    - endpoints: [ptp_grandmaster_backup:eth1, core2:eth5]
+      vars:
+        port: [1/1/c1/1, 1/1/c2/1]
+
+
