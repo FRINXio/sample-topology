@@ -46,6 +46,12 @@ topology:
     R2_PE2:
       mgmt-ipv4: 172.20.20.122
       startup-config: config_r2_pe2.partial.txt
+      
+    # BTS  
+    BTS:
+      image: bts
+      kind: linux
+      mgmt-ipv4: 172.20.20.201
 
   links:
     # Data center 1
@@ -64,5 +70,7 @@ topology:
     # PTP grandmaster to core routers
     - endpoints: [PTP_GM:eth1, C1:eth5]
     - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
+    # BTS 
+    - endpoints: ["BTS:eth1", "R1_PE1:eth3"]
 
 
