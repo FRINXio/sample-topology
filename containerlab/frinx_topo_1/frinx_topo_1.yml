@@ -9,51 +9,60 @@ topology:
       vars:
         isis_iid: 1
   nodes:
-    ptp_grandmaster:
+
+    # PTP & SyncE GMs
+    PTP_GM:
       mgmt-ipv4: 172.20.20.9
-      startup-config: ptp_grandmaster.partial.txt
-    ptp_grandmaster_backup:
+      startup-config: config_ptp_gm.partial.txt
+    PTP_GM_BACKUP:
       mgmt-ipv4: 172.20.20.8
-      startup-config: ptp_grandmaster_backup.partial.txt
-    core1:
+      startup-config: config_ptp_gm_backup.partial.txt
+    
+    # core routers
+    C1:
       mgmt-ipv4: 172.20.20.11
-      startup-config: core1.partial.txt
-    core2:
+      startup-config: config_c1.partial.txt
+    C2:
       mgmt-ipv4: 172.20.20.12
-      startup-config: core2.partial.txt
-    PE:
-      mgmt-ipv4: 172.20.20.13
-      startup-config: core2.partial.txt
-    PE2:
-      mgmt-ipv4: 172.20.20.14
-      startup-config: core2.partial.txt
-    PE3:
-      mgmt-ipv4: 172.20.20.15
-      startup-config: core2.partial.txt
-    PE4:
-      mgmt-ipv4: 172.20.20.16
-      startup-config: core2.partial.txt
-    PE5:
-      mgmt-ipv4: 172.20.20.17
-      startup-config: core2.partial.txt
+      startup-config: config_c2.partial.txt
+
+    # Data center 1
+    DC1_PE1:
+      mgmt-ipv4: 172.20.20.93
+      startup-config: config_dc1_pe1.partial.txt
+
+    # Region 1
+    R1_PE1:
+      mgmt-ipv4: 172.20.20.111
+      startup-config: config_r1_pe1.partial.txt
+    R1_PE2:
+      mgmt-ipv4: 172.20.20.112
+      startup-config: config_r1_pe2.partial.txt
+
+    # Region 2
+    R2_PE1:
+      mgmt-ipv4: 172.20.20.121
+      startup-config: config_r2_pe1.partial.txt
+    R2_PE2:
+      mgmt-ipv4: 172.20.20.122
+      startup-config: config_r2_pe2.partial.txt
 
   links:
-    - endpoints: [PE:eth1, core1:eth2]
-    - endpoints: [PE:eth2, core2:eth2]
-    - endpoints: [PE2:eth1, core1:eth3]
-    - endpoints: [PE3:eth1, core2:eth3]
-    - endpoints: [PE4:eth1, core1:eth4]
-    - endpoints: [PE5:eth1, core2:eth4]
-    - endpoints: [PE2:eth2, PE3:eth2]
-    - endpoints: [PE4:eth2, PE5:eth2]
-    - endpoints: [core1:eth1, core2:eth1]
-      vars:
-        port: [1/1/c1/1, 1/1/c1/1]
-    - endpoints: [ptp_grandmaster:eth1, core1:eth5]
-      vars:
-        port: [1/1/c1/1, 1/1/c2/1]
-    - endpoints: [ptp_grandmaster_backup:eth1, core2:eth5]
-      vars:
-        port: [1/1/c1/1, 1/1/c2/1]
+    # Data center 1
+    - endpoints: [DC1_PE1:eth1, C1:eth2]
+    - endpoints: [DC1_PE1:eth2, C2:eth2]
+    # Region 1
+    - endpoints: [R1_PE1:eth1, C1:eth3]
+    - endpoints: [R1_PE2:eth1, C2:eth3]
+    - endpoints: [R1_PE1:eth2, R1_PE2:eth2]
+    # Region 2
+    - endpoints: [R2_PE1:eth1, C1:eth4]
+    - endpoints: [R2_PE2:eth1, C2:eth4]
+    - endpoints: [R2_PE1:eth2, R2_PE2:eth2]
+    # core routers
+    - endpoints: [C1:eth1, C2:eth1]
+    # PTP grandmaster to core routers
+    - endpoints: [PTP_GM:eth1, C1:eth5]
+    - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
 
 

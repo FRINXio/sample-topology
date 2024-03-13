@@ -18,9 +18,29 @@ configure {
         }
     }
 
+    port 1/1/c3 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c4 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c5 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
     port 1/1/c1/1 {
         admin-state enable
-        description "Towards core2"
         ethernet {
             lldp {
                 dest-mac nearest-bridge {
@@ -39,7 +59,59 @@ configure {
 
     port 1/1/c2/1 {
         admin-state enable
-        description "Towards ptp_grandmaster"
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c3/1 {
+        admin-state enable
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+    port 1/1/c4/1 {
+        admin-state enable
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c5/1 {
+        admin-state enable
         ethernet {
             lldp {
                 dest-mac nearest-bridge {
@@ -73,10 +145,19 @@ configure {
             admin-state enable
             clock-type boundary
             profile ieee1588-2008
+            port 1/1/c1/1 {
+                admin-state enable
+            }
             port 1/1/c2/1 {
                 admin-state enable
             }
-            port 1/1/c1/1 {
+            port 1/1/c3/1 {
+                admin-state enable
+            }
+            port 1/1/c4/1 {
+                admin-state enable
+            }
+            port 1/1/c5/1 {
                 admin-state enable
             }
         }
@@ -84,7 +165,7 @@ configure {
         central-frequency-clock {
             ref1 {
                 admin-state enable
-                source-port 1/1/c2/1
+                source-port 1/1/c1/1
             }
         }
 
