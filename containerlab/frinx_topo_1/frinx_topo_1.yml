@@ -52,13 +52,13 @@ topology:
     - endpoints: [DC1_PE1:eth1, C1:eth2]
     - endpoints: [DC1_PE1:eth2, C2:eth2]
     # Region 1
-    - endpoints: [R1_PE1:eth1, C1:eth3]
-    - endpoints: [R1_PE2:eth1, C2:eth3]
-    - endpoints: [R1_PE1:eth2, R1_PE2:eth2]
+    - endpoints: [R1_PE1:eth2, C1:eth3]
+    - endpoints: [R1_PE2:eth2, C2:eth3]
+    - endpoints: [R1_PE1:eth1, R1_PE2:eth1]
     # Region 2
-    - endpoints: [R2_PE1:eth1, C1:eth4]
-    - endpoints: [R2_PE2:eth1, C2:eth4]
-    - endpoints: [R2_PE1:eth2, R2_PE2:eth2]
+    - endpoints: [R2_PE1:eth2, C1:eth4]
+    - endpoints: [R2_PE2:eth2, C2:eth4]
+    - endpoints: [R2_PE1:eth1, R2_PE2:eth1]
     # core routers
     - endpoints: [C1:eth1, C2:eth1]
     # PTP grandmaster to core routers
