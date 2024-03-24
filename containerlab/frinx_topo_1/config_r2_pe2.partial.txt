@@ -132,7 +132,7 @@ configure {
         interface "system" {
             ipv4 {
                 primary {
-                    address 1.1.1.122
+                    address 6.6.6.6
                     prefix-length 32
                 }
             }
@@ -142,8 +142,8 @@ configure {
             port 1/1/c2/1
             ipv4 {
                 primary {
-                    address 10.10.10.122
-                    prefix-length 24
+                    address 10.20.0.7
+                    prefix-length 31
                 }
             }
         }
@@ -152,13 +152,14 @@ configure {
             port 1/1/c1/1
             ipv4 {
                 primary {
-                    address 20.20.20.122
-                    prefix-length 24
+                    address 10.30.0.3
+                    prefix-length 31
                 }
             }
         }
         ospf 0 {
             admin-state enable
+            router-id 6.6.6.6
             area 0.0.0.0 {
                 interface "system" {
                     admin-state enable
@@ -199,7 +200,7 @@ configure {
         central-frequency-clock {
             ref1 {
                 admin-state enable
-                source-port 1/1/c1/1
+                source-port 1/1/c2/1
             }
         }
 

@@ -132,7 +132,7 @@ configure {
         interface "system" {
             ipv4 {
                 primary {
-                    address 1.1.1.11
+                    address 1.1.1.1
                     prefix-length 32
                 }
             }
@@ -142,8 +142,8 @@ configure {
             port 1/1/c1/1
             ipv4 {
                 primary {
-                    address 30.30.30.11
-                    prefix-length 24
+                    address 10.10.0.0
+                    prefix-length 31
                 }
             }
         }
@@ -152,8 +152,8 @@ configure {
             port 1/1/c3/1
             ipv4 {
                 primary {
-                    address 20.20.20.11
-                    prefix-length 24
+                    address 10.20.0.0
+                    prefix-length 31
                 }
             }
         }
@@ -162,23 +162,24 @@ configure {
             port 1/1/c4/1
             ipv4 {
                 primary {
-                    address 40.40.40.11
-                    prefix-length 24
+                    address 10.20.0.4
+                    prefix-length 31
                 }
             }
         }
-        interface "to-dc1_pe1" {
+        interface "to-dc1-pe1" {
             admin-state enable
             port 1/1/c2/1
             ipv4 {
                 primary {
-                    address 10.10.10.11
-                    prefix-length 24
+                    address 10.20.0.8
+                    prefix-length 31
                 }
             }
         }
         ospf 0 {
             admin-state enable
+            router-id 1.1.1.1
             area 0.0.0.0 {
                 interface "system" {
                     admin-state enable
@@ -192,7 +193,7 @@ configure {
                 interface "to-r2-pe1" {
                     admin-state enable
                 }
-                interface "to-dc1_pe1" {
+                interface "to-dc1-pe1" {
                     admin-state enable
                 }
             }
