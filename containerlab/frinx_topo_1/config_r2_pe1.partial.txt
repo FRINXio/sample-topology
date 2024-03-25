@@ -157,6 +157,23 @@ configure {
                 }
             }
         }
+        ldp {
+            admin-state enable
+            interface-parameters {
+                interface "to-c1" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+                interface "to-r2-pe2" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+            }
+        }
         ospf 0 {
             admin-state enable
             router-id 5.5.5.5
