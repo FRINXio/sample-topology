@@ -52,6 +52,12 @@ topology:
       image: bts
       kind: linux
       mgmt-ipv4: 172.20.20.201
+      
+    # BTS service
+    BTS_service:
+      image: bts
+      kind: linux
+      mgmt-ipv4: 172.20.20.202
 
   links:
     # Data center 1
@@ -72,5 +78,7 @@ topology:
     - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
     # BTS 
     - endpoints: ["BTS:eth1", "R1_PE1:eth3"]
+    # BTS service
+    - endpoints: ["BTS_service:eth1", "DC1_PE1:eth3"]
 
 
