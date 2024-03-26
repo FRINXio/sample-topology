@@ -139,7 +139,7 @@ configure {
         }
         interface "to-c1" {
             admin-state enable
-            port 1/1/c1/1
+            port 1/1/c2/1
             ipv4 {
                 primary {
                     address 10.20.0.5
@@ -149,7 +149,7 @@ configure {
         }
         interface "to-r2-pe2" {
             admin-state enable
-            port 1/1/c2/1
+            port 1/1/c1/1
             ipv4 {
                 primary {
                     address 10.30.0.2
