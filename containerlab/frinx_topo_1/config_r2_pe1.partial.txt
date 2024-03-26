@@ -132,33 +132,51 @@ configure {
         interface "system" {
             ipv4 {
                 primary {
-                    address 1.1.1.121
+                    address 5.5.5.5
                     prefix-length 32
                 }
             }
         }
         interface "to-c1" {
             admin-state enable
-            port 1/1/c1/1
+            port 1/1/c2/1
             ipv4 {
                 primary {
-                    address 20.20.20.121
-                    prefix-length 24
+                    address 10.20.0.5
+                    prefix-length 31
                 }
             }
         }
         interface "to-r2-pe2" {
             admin-state enable
-            port 1/1/c2/1
+            port 1/1/c1/1
             ipv4 {
                 primary {
-                    address 40.40.40.121
-                    prefix-length 24
+                    address 10.30.0.2
+                    prefix-length 31
+                }
+            }
+        }
+        ldp {
+            admin-state enable
+            interface-parameters {
+                interface "to-c1" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+                interface "to-r2-pe2" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
                 }
             }
         }
         ospf 0 {
             admin-state enable
+            router-id 5.5.5.5
             area 0.0.0.0 {
                 interface "system" {
                     admin-state enable
@@ -199,7 +217,7 @@ configure {
         central-frequency-clock {
             ref1 {
                 admin-state enable
-                source-port 1/1/c1/1
+                source-port 1/1/c2/1
             }
         }
 
