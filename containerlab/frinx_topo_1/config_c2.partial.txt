@@ -210,21 +210,30 @@ configure {
         ospf 0 {
             admin-state enable
             router-id 2.2.2.2
+            traffic-engineering true
+            traffic-engineering-options {
+                sr-te application-specific-link-attributes
+                advertise-delay true
+            }
             area 0.0.0.0 {
                 interface "system" {
                     admin-state enable
                 }
                 interface "to-c1" {
                     admin-state enable
+                    interface-type point-to-point
                 }
                 interface "to-r1-pe2" {
                     admin-state enable
+                    interface-type point-to-point
                 }
                 interface "to-r2-pe2" {
                     admin-state enable
+                    interface-type point-to-point
                 }
                 interface "to-dc1-pe1" {
                     admin-state enable
+                    interface-type point-to-point
                 }
             }
         }
