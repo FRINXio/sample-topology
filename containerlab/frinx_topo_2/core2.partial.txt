@@ -1,0 +1,144 @@
+configure {
+    card 1 {
+        mda 1 {
+            sync-e true
+        }
+    }
+
+    port 1/1/c1 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c2 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c1/1 {
+        admin-state enable
+        description "Towards core1"
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c2/1 {
+        admin-state enable
+        description "Towards ptp_grandmaster_backup"
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    # router "Base" {
+    #     interface "core1/1" {
+    #         port 1/1/c1/1
+    #         ipv4 {
+    #             primary {
+    #                 address 1.1.1.20
+    #                 prefix-length 24
+    #             }
+    #         }
+    #     }
+    # }
+
+    system {
+        ptp {
+            admin-state enable
+            clock-type boundary
+            profile ieee1588-2008
+            port 1/1/c2/1 {
+                admin-state enable
+            }
+            port 1/1/c1/1 {
+                admin-state enable
+            }
+        }
+
+        central-frequency-clock {
+            ref1 {
+                admin-state enable
+                source-port 1/1/c1/1
+            }
+        }
+
+        lldp {
+            admin-state enable
+        }
+        grpc {
+            admin-state enable
+            allow-unsecure-connection
+            gnmi {
+                admin-state enable
+                auto-config-save true
+            }
+            rib-api {
+                admin-state enable
+            }
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "grpc" {
+                        default-action permit-all
+                        grpc {
+                            rpc-authorization {
+                                gnmi-capabilities permit
+                                gnmi-get permit
+                                gnmi-set permit
+                                gnmi-subscribe permit
+                                rib-api-getversion permit
+                                rib-api-modify permit
+                            }
+                        }
+                    }
+                }
+            }
+
+            user-params {
+                local-user {
+                    user "admin" {
+                        access {
+                            console true
+                            ftp true
+                            snmp true
+                            netconf true
+                            grpc true
+                        }
+                        console {
+                            member ["administrative" "grpc"]
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
