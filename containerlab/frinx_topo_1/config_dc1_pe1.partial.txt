@@ -174,6 +174,24 @@ configure {
                 }
             }
         }
+        rsvp {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-c2" {
+                admin-state enable
+            }
+        }
+        mpls {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-c2" {
+                admin-state enable
+            }
+        }
         ospf 0 {
             admin-state enable
             router-id 7.7.7.7

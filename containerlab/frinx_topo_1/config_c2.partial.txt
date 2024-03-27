@@ -207,6 +207,36 @@ configure {
                 }
             }
         }
+        rsvp {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-r1-pe2" {
+                admin-state enable
+            }
+            interface "to-r2-pe2" {
+                admin-state enable
+            }
+            interface "to-dc1-pe1" {
+                admin-state enable
+            }
+        }
+        mpls {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-r1-pe2" {
+                admin-state enable
+            }
+            interface "to-r2-pe2" {
+                admin-state enable
+            }
+            interface "to-dc1-pe1" {
+                admin-state enable
+            }
+        }
         ospf 0 {
             admin-state enable
             router-id 2.2.2.2
