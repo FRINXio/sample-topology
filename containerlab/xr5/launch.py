@@ -239,6 +239,9 @@ class XRV_vm(vrnetlab.VM):
         self.wait_write("no shutdown")
         self.wait_write("ipv4 address 10.0.0.15/24")
         self.wait_write("exit")
+        self.wait_write("interface GigabitEthernet0/0/0/2")
+        self.wait_write("no shutdown")
+        self.wait_write("exit")
         self.wait_write("commit")
         self.wait_write("exit")
 

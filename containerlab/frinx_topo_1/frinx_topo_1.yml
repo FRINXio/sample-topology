@@ -17,7 +17,7 @@ topology:
     PTP_GM_BACKUP:
       mgmt-ipv4: 172.20.20.8
       startup-config: config_ptp_gm_backup.partial.txt
-    
+
     # core routers
     C1:
       mgmt-ipv4: 172.20.20.11
@@ -52,6 +52,7 @@ topology:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
       mgmt-ipv4: 172.20.20.202
+      startup-config: config_r1_cpe1.partial.txt
       env:
         RAM: 4096
 
@@ -59,6 +60,7 @@ topology:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
       mgmt-ipv4: 172.20.20.203
+      startup-config: config_r1_cpe2.partial.txt
       env:
         RAM: 4096
 
@@ -67,6 +69,7 @@ topology:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
       mgmt-ipv4: 172.20.20.204
+      startup-config: config_r2_cpe1.partial.txt
       env:
         RAM: 4096
 
@@ -74,6 +77,7 @@ topology:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
       mgmt-ipv4: 172.20.20.205
+      startup-config: config_r2_cpe2.partial.txt
       env:
         RAM: 4096
 
@@ -113,6 +117,7 @@ topology:
     # PTP grandmaster to core routers
     - endpoints: [PTP_GM:eth1, C1:eth5]
     - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
+
     # openswitch to Region 3 and 4
     - endpoints: [R1_OLT:ovsp1, R1_CPE1:eth1]
     - endpoints: [R1_OLT:ovsp2, R1_CPE2:eth1]
@@ -122,4 +127,3 @@ topology:
 
 #    # BTS
 #    - endpoints: ["BTS:eth1", "R1_PE1:eth3"]
-

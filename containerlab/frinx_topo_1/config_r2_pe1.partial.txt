@@ -132,42 +132,114 @@ configure {
         interface "system" {
             ipv4 {
                 primary {
-                    address 1.1.1.121
+                    address 5.5.5.5
                     prefix-length 32
                 }
             }
         }
         interface "to-c1" {
             admin-state enable
-            port 1/1/c1/1
+            port 1/1/c2/1
             ipv4 {
                 primary {
-                    address 20.20.20.121
-                    prefix-length 24
+                    address 10.20.0.5
+                    prefix-length 31
                 }
             }
         }
         interface "to-r2-pe2" {
             admin-state enable
-            port 1/1/c2/1
+            port 1/1/c1/1
             ipv4 {
                 primary {
-                    address 40.40.40.121
+                    address 10.30.0.2
+                    prefix-length 31
+                }
+            }
+        }
+        interface "to-r1-cmts" {
+            admin-state enable
+            port 1/1/c3/1
+            ipv4 {
+                primary {
+                    address 172.16.1.4
                     prefix-length 24
+                }
+            }
+        }
+        ldp {
+            admin-state enable
+            interface-parameters {
+                interface "to-c1" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+                interface "to-r2-pe2" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+                interface "to-r1-cmts" {
+                    admin-state enable
+                    ipv4 {
+                        admin-state enable
+                    }
+                }
+            }
+        }
+        rsvp {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-r2-pe2" {
+                admin-state enable
+            }
+        }
+        mpls {
+            admin-state enable
+            interface "to-c1" {
+                admin-state enable
+            }
+            interface "to-r2-pe2" {
+                admin-state enable
+            }
+            path "PATH_LOOSE" {
+                admin-state enable
+            }
+            lsp "to-r1-pe2" {
+                admin-state enable
+                type p2p-rsvp
+                from 5.5.5.5
+                to 4.4.4.4
+                path-computation-method local-cspf
+                primary "PATH_LOOSE" {
+                    admin-state enable
                 }
             }
         }
         ospf 0 {
             admin-state enable
+            router-id 5.5.5.5
+            traffic-engineering true
+            traffic-engineering-options {
+                sr-te application-specific-link-attributes
+                advertise-delay true
+            }
             area 0.0.0.0 {
                 interface "system" {
                     admin-state enable
                 }
                 interface "to-c1" {
                     admin-state enable
+                    interface-type point-to-point
                 }
                 interface "to-r2-pe2" {
                     admin-state enable
+                    interface-type point-to-point
                 }
 
             }
@@ -199,7 +271,7 @@ configure {
         central-frequency-clock {
             ref1 {
                 admin-state enable
-                source-port 1/1/c1/1
+                source-port 1/1/c2/1
             }
         }
 
