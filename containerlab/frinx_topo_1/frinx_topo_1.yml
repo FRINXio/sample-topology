@@ -47,7 +47,6 @@ topology:
       mgmt-ipv4: 172.20.20.122
       startup-config: config_r2_pe2.partial.txt
 
-    # Region 3
     R1_CPE1:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
@@ -64,7 +63,6 @@ topology:
       env:
         RAM: 4096
 
-    # Region 4
     R2_CPE1:
       image: vrnetlab/vr-xrv9k:5.3.4
       kind: cisco_xrv9k
@@ -81,22 +79,15 @@ topology:
       env:
         RAM: 4096
 
-    # openvswitch for Region 3
+    # openvswitch for Region 1
     R1_OLT:
       kind: ovs-bridge
       mgmt-ipv4: 172.20.20.206
       
-    # openvswitch for Region 4
-    R1_CMTS:
+    # openvswitch for Region 2
+    R2_CMTS:
       kind: ovs-bridge
       mgmt-ipv4: 172.20.20.207
-      
-#    # BTS
-#    BTS:
-#      image: bts
-#      kind: linux
-#      mgmt-ipv4: 172.20.20.201
-
 
   links:
     # Data center 1
@@ -111,19 +102,15 @@ topology:
     - endpoints: [R2_PE1:eth2, C1:eth4]
     - endpoints: [R2_PE2:eth2, C2:eth4]
     - endpoints: [R2_PE1:eth1, R2_PE2:eth1]
-    - endpoints: [R2_PE1:eth3, R1_CMTS:ovsp6]
+    - endpoints: [R2_PE1:eth3, R2_CMTS:ovsp6]
     # core routers
     - endpoints: [C1:eth1, C2:eth1]
     # PTP grandmaster to core routers
     - endpoints: [PTP_GM:eth1, C1:eth5]
     - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
 
-    # openswitch to Region 3 and 4
+    # openswitch to Region 1 and 2
     - endpoints: [R1_OLT:ovsp1, R1_CPE1:eth1]
     - endpoints: [R1_OLT:ovsp2, R1_CPE2:eth1]
-    - endpoints: [R1_CMTS:ovsp4, R2_CPE1:eth1]
-    - endpoints: [R1_CMTS:ovsp5, R2_CPE2:eth1]
-
-
-#    # BTS
-#    - endpoints: ["BTS:eth1", "R1_PE1:eth3"]
+    - endpoints: [R2_CMTS:ovsp4, R2_CPE1:eth1]
+    - endpoints: [R2_CMTS:ovsp5, R2_CPE2:eth1]

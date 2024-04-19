@@ -16,7 +16,7 @@ replace by adjusted file attached in this folder
 
 
 
-1. first add R1_OLT and R1_CMTS before deploying topology
+1. first add R1_OLT and R2_CMTS before deploying topology
    `sudo ./openswitch1.sh`
 
 2. deploy topology by:
@@ -47,7 +47,7 @@ for deleting openvswitch port use:
 `sudo ovs-vsctl del-port ovsp1`
 
 for deleting openvswitch bridge use:
-`sudo ovs-vsctl del-br R1_CMTS`
+`sudo ovs-vsctl del-br R2_CMTS`
 
 for manual adding port(this will be done by deploying topology):
 `ovs-vsctl add-port R1_OLT ovsp1`
