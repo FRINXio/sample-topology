@@ -130,6 +130,7 @@ configure {
     }
 
     router "Base" {
+        autonomous-system 65001
         interface "system" {
             ipv4 {
                 primary {
@@ -247,6 +248,40 @@ configure {
                     interface-type point-to-point
                 }
 
+            }
+        }
+        bgp {
+            admin-state enable
+            router-id 4.4.4.4
+            group "eBGP" {
+                admin-state enable
+                multihop 5
+                next-hop-self true
+                type external
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+            }
+            group "iBGP" {
+                admin-state enable
+                next-hop-self true
+                type internal
+                peer-as 65001
+                local-address 4.4.4.4
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+            }
+            neighbor "3.3.3.3" {
+                admin-state enable
+                group "iBGP"
+            }
+            neighbor "6.6.6.6" {
+                admin-state enable
+                group "eBGP"
+                peer-as 65002
             }
         }
     }
