@@ -78,6 +78,7 @@ configure {
     port 1/1/c3/1 {
         admin-state enable
         ethernet {
+            encap-type dot1q
             lldp {
                 dest-mac nearest-bridge {
                     receive true
@@ -129,6 +130,7 @@ configure {
     }
 
     router "Base" {
+        autonomous-system 65001
         interface "system" {
             ipv4 {
                 primary {
@@ -157,12 +159,22 @@ configure {
                 }
             }
         }
-        interface "to-r1-olt" {
+        interface "to-r1-cpe1" {
             admin-state enable
-            port 1/1/c3/1
+            port 1/1/c3/1:10
             ipv4 {
                 primary {
-                    address 172.16.1.1
+                    address 172.16.10.1
+                    prefix-length 24
+                }
+            }
+        }
+        interface "to-r1-cpe2" {
+            admin-state enable
+            port 1/1/c3/1:20
+            ipv4 {
+                primary {
+                    address 172.16.20.1
                     prefix-length 24
                 }
             }
@@ -177,12 +189,6 @@ configure {
                     }
                 }
                 interface "to-r1-pe1" {
-                    admin-state enable
-                    ipv4 {
-                        admin-state enable
-                    }
-                }
-                interface "to-r1-olt" {
                     admin-state enable
                     ipv4 {
                         admin-state enable
@@ -242,6 +248,40 @@ configure {
                     interface-type point-to-point
                 }
 
+            }
+        }
+        bgp {
+            admin-state enable
+            router-id 4.4.4.4
+            group "eBGP" {
+                admin-state enable
+                multihop 5
+                next-hop-self true
+                type external
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+            }
+            group "iBGP" {
+                admin-state enable
+                next-hop-self true
+                type internal
+                peer-as 65001
+                local-address 4.4.4.4
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+            }
+            neighbor "3.3.3.3" {
+                admin-state enable
+                group "iBGP"
+            }
+            neighbor "6.6.6.6" {
+                admin-state enable
+                group "eBGP"
+                peer-as 65002
             }
         }
     }

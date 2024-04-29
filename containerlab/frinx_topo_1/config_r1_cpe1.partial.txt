@@ -1,6 +1,16 @@
 !
 interface GigabitEthernet0/0/0/2
- ipv4 address 172.16.1.2 255.255.255.0
+ ipv4 address 172.16.10.10 255.255.255.0
 !
-exit
+interface Loopback0
+ ipv4 address 192.168.10.1 255.255.255.128
+!
+interface Loopback1
+ ipv4 address 192.168.10.129 255.255.255.128
+!
+router static
+ address-family ipv4 unicast
+  0.0.0.0/0 172.16.10.1
+ !
+!
 lldp
