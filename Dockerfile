@@ -1,4 +1,4 @@
-FROM frinx/netconf-testtool:6.0.0 as TESTTOOL
+FROM frinx/netconf-testtool:latest as TESTTOOL
 
 FROM python:2.7-alpine
 LABEL org.opencontainers.image.source="https://github.com/FRINXio/sample-topology"
