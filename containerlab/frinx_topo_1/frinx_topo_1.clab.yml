@@ -9,7 +9,6 @@ topology:
       vars:
         isis_iid: 1
   nodes:
-
     # PTP & SyncE GMs
     PTP_GM:
       mgmt-ipv4: 172.20.20.9
@@ -48,32 +47,32 @@ topology:
       startup-config: config_r2_pe2.partial.txt
 
     R1_CPE1:
-      image: vrnetlab/vr-xrv9k:5.3.4
-      kind: cisco_xrv9k
+      image: vrnetlab/vr-xrv:6.0.1
+      kind: cisco_xrv
       mgmt-ipv4: 172.20.20.202
       startup-config: config_r1_cpe1.partial.txt
       env:
         RAM: 4096
 
     R1_CPE2:
-      image: vrnetlab/vr-xrv9k:5.3.4
-      kind: cisco_xrv9k
+      image: vrnetlab/vr-xrv:6.0.1
+      kind: cisco_xrv
       mgmt-ipv4: 172.20.20.203
       startup-config: config_r1_cpe2.partial.txt
       env:
         RAM: 4096
 
     R2_CPE1:
-      image: vrnetlab/vr-xrv9k:5.3.4
-      kind: cisco_xrv9k
+      image: vrnetlab/vr-xrv:6.0.1
+      kind: cisco_xrv
       mgmt-ipv4: 172.20.20.204
       startup-config: config_r2_cpe1.partial.txt
       env:
         RAM: 4096
 
     R2_CPE2:
-      image: vrnetlab/vr-xrv9k:5.3.4
-      kind: cisco_xrv9k
+      image: vrnetlab/vr-xrv:6.0.1
+      kind: cisco_xrv
       mgmt-ipv4: 172.20.20.205
       startup-config: config_r2_cpe2.partial.txt
       env:
@@ -109,7 +108,7 @@ topology:
     - endpoints: [PTP_GM:eth1, C1:eth5]
     - endpoints: [PTP_GM_BACKUP:eth1, C2:eth5]
 
-    # openswitch to Region 1 and 2
+    # openvswitch to Region 1 and 2
     - endpoints: [R1_OLT:ovsp1, R1_CPE1:eth1]
     - endpoints: [R1_OLT:ovsp2, R1_CPE2:eth1]
     - endpoints: [R2_CMTS:ovsp4, R2_CPE1:eth1]

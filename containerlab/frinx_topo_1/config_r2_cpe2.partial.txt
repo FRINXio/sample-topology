@@ -1,12 +1,14 @@
-!
-interface GigabitEthernet0/0/0/2
+interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.40.10 255.255.255.0
+ no shutdown
 !
 interface Loopback0
  ipv4 address 192.168.40.1 255.255.255.128
+ no shutdown
 !
 interface Loopback1
  ipv4 address 192.168.40.129 255.255.255.128
+ no shutdown
 !
 router static
  address-family ipv4 unicast
@@ -14,3 +16,4 @@ router static
  !
 !
 lldp
+!

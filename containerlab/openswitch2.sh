@@ -17,9 +17,13 @@ ovs-vsctl set interface ovsp5 lldp:enable=true
 # port from R2_CMTS to R2_PE1
 ovs-vsctl set interface ovsp6 lldp:enable=true
 
+# delete mappings
+ovs-vsctl del-aa-mapping R1_OLT 1 1
+ovs-vsctl del-aa-mapping R2_CMTS 2 2
+
 # add mapping to bridges
-ovs-vsctl add-aa-mapping R1_OLT 0 0
-ovs-vsctl add-aa-mapping R2_CMTS 0 0
+ovs-vsctl add-aa-mapping R1_OLT 1 1
+ovs-vsctl add-aa-mapping R2_CMTS 2 2
 
 # add name visible in LLDP table 
 ovs-vsctl set AutoAttach R1_OLT system_name="R1_OLT"
@@ -53,3 +57,7 @@ ovs-vsctl set port ovsp6 trunks=10,20
 
 ovs-vsctl set port ovsp3 vlan_mode=trunk
 ovs-vsctl set port ovsp6 vlan_mode=trunk
+
+# clear automatically created trunk ports
+sudo ovs-vsctl clear port R2_CMTS trunks
+sudo ovs-vsctl clear port R1_OLT trunks
