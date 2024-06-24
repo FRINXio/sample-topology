@@ -1,34 +1,58 @@
-name: Publish Docker Image
+name: Docker
 
 on:
   push:
+    # Publish `main` and `stable` as Docker `latest` image.
     branches:
       - main
-  release:
-    types: [published]
+      - '[0-9]+.X-stable'
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]-stable'
+
+env:
+  IMAGE_NAME: frinx/sample-topology
+  # DOCKER_CONTENT_TRUST: 1
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  push:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
+      - uses: actions/checkout@v2
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          fetch-depth: 0
 
-      - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      #### Set tags based on source type ####
 
-      - name: Build and push latest
-        id: docker_build
-        env:
-          TAG: ${{ github.event.release.tag_name || 'latest' }}
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: |
-            frinx/sample-topology:${{ env.TAG }}
+      - name: Set tag for latest image
+        if: github.ref_type == 'branch' && startsWith(github.ref, 'refs/heads/main')
+        run: |
+          echo "IMAGE_TAG=$(echo 'latest')" >> "$GITHUB_ENV"
+
+      - name: Set tag for stable-latest image
+        if: github.ref_type == 'branch' && endsWith(github.ref, '-stable')
+        run: |
+          echo "IMAGE_TAG=$(echo 'stable-latest')" >> "$GITHUB_ENV"
+
+      - name: Set tag for stable-release image
+        if: github.ref_type == 'tag' && endsWith(github.ref, '-stable')
+        run: |
+          echo "IMAGE_TAG=$(echo $GITHUB_REF | cut -d / -f 3 | sed -e 's/^v//' | sed -e 's/-stable//')" >> "$GITHUB_ENV"
+
+      - name: Set tag for release image
+        if: ${{ github.ref_type == 'tag' && !endsWith(github.ref, '-stable') }}
+        run: |
+          echo "IMAGE_TAG=$(echo $GITHUB_REF | cut -d / -f 3 | sed -e 's/^v//')" >> "$GITHUB_ENV"
+
+      - name: Build image
+        run: docker build . --file Dockerfile --build-arg git_commit=$(git rev-parse HEAD) --tag $IMAGE_NAME:${IMAGE_TAG}
+
+      - name: Log into docker hub
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+
+      - name: Push image
+        run: |
+          docker push $IMAGE_NAME:${IMAGE_TAG}
