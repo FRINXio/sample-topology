@@ -1,0 +1,21 @@
+{
+    "setting_cmd_delay": 0,
+    "setting_default_prompt": "R1_PE2",
+    "setting_default_user": "admin",
+    "setting_default_passwd": "admin",
+    "configuration save": "",
+    "show router mpls lsp path detail": "",
+    "show router mpls lsp terminate detail": "",
+    "show router mpls lsp transit detail": "",
+    "show system lldp neighbor": "===============================================================================\\nNB = nearest-bridge   NTPMR = nearest-non-tpmr   NC = nearest-customer\\n===============================================================================\\nLcl Port      Scope Remote Chassis ID  Index  Remote Port     Remote Sys Name\\n-------------------------------------------------------------------------------\\nNo Matching Entries\\n===============================================================================",
+    "show router ospf status": "",
+    "terminal length 0": "OK",
+    "terminal width 0": "OK",
+    "enable": {
+        "name": "enable",
+        "prompt": "Password:",
+        "password": "admin",
+        "newprompt": "R1_PE2",
+        "error_message": "Illegal password"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "setting_cmd_delay": 0,
+    "setting_default_prompt": "PTP_GM_BACKUP",
+    "setting_default_user": "admin",
+    "setting_default_passwd": "admin",
+    "configuration save": "",
+    "show router mpls lsp path detail": "",
+    "show router mpls lsp terminate detail": "",
+    "show router mpls lsp transit detail": "",
+    "show system lldp neighbor": "===============================================================================\\nNB = nearest-bridge   NTPMR = nearest-non-tpmr   NC = nearest-customer\\n===============================================================================\\nLcl Port      Scope Remote Chassis ID  Index  Remote Port     Remote Sys Name\\n-------------------------------------------------------------------------------\\n1/1/c1/1      NB    0C:00:5D:E4:68:00  1      1/1/c5/1, 10-G* C2\\n===============================================================================\\n* indicates that the corresponding row element may have been truncated.\\nNumber of neighbors : 1",
+    "show router ospf status": "",
+    "terminal length 0": "OK",
+    "terminal width 0": "OK",
+    "enable": {
+        "name": "enable",
+        "prompt": "Password:",
+        "password": "admin",
+        "newprompt": "PTP_GM_BACKUP",
+        "error_message": "Illegal password"
+    }
+}
