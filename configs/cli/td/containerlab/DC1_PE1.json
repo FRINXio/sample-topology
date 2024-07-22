@@ -7,7 +7,7 @@
     "show router mpls lsp path detail": "",
     "show router mpls lsp terminate detail": "",
     "show router mpls lsp transit detail": "",
-    "show system lldp neighbor": "===============================================================================\\nNB = nearest-bridge   NTPMR = nearest-non-tpmr   NC = nearest-customer\\n===============================================================================\\nLcl Port      Scope Remote Chassis ID  Index  Remote Port     Remote Sys Name\\n-------------------------------------------------------------------------------\\nNo Matching Entries\\n===============================================================================",
+    "show system lldp neighbor": "===============================================================================\nNB = nearest-bridge   NTPMR = nearest-non-tpmr   NC = nearest-customer\n===============================================================================\nLcl Port      Scope Remote Chassis ID  Index  Remote Port     Remote Sys Name\n-------------------------------------------------------------------------------\nNo Matching Entries\n===============================================================================",
     "show router ospf status": "",
     "terminal length 0": "OK",
     "terminal width 0": "OK",
