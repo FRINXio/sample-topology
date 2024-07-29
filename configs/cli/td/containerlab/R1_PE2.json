@@ -1,6 +1,6 @@
 {
     "setting_cmd_delay": 0,
-    "setting_default_prompt": "R1_PE2",
+    "setting_default_prompt": "R1_PE2#",
     "setting_default_user": "admin",
     "setting_default_passwd": "admin",
     "configuration save": "",
@@ -16,7 +16,7 @@
         "name": "enable",
         "prompt": "Password:",
         "password": "admin",
-        "newprompt": "R1_PE2",
+        "newprompt": "R1_PE2#",
         "error_message": "Illegal password"
     }
 }
