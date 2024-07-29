@@ -1,21 +1,22 @@
 {
     "setting_cmd_delay": 0,
-    "setting_default_prompt": "PTP_GM",
+    "setting_default_prompt": "PTP_GM#",
     "setting_default_user": "admin",
     "setting_default_passwd": "admin",
     "configuration save": "",
-    "show router mpls lsp path detail": "",
-    "show router mpls lsp terminate detail": "",
-    "show router mpls lsp transit detail": "",
+    "show router ldp bindings active detail": "MINOR: CLI #2005: Error while processing command - LDP is not configured.",
+    "show router mpls lsp path detail": "MINOR: CLI #2005: Error while processing command - MPLS is not configured.",
+    "show router mpls lsp terminate detail": "MINOR: CLI #2005: Error while processing command - MPLS is not configured.",
+    "show router mpls lsp transit detail": "MINOR: CLI #2005: Error while processing command - MPLS is not configured.",
     "show system lldp neighbor": "===============================================================================\nNB = nearest-bridge   NTPMR = nearest-non-tpmr   NC = nearest-customer\n===============================================================================\nLcl Port      Scope Remote Chassis ID  Index  Remote Port     Remote Sys Name\n-------------------------------------------------------------------------------\n1/1/c1/1      NB    0C:00:94:59:8D:00  1      1/1/c5/1, 10-G* C1\n===============================================================================\n* indicates that the corresponding row element may have been truncated.\nNumber of neighbors : 1",
-    "show router ospf status": "",
+    "show router ospf status": "MINOR: CLI #2005: Error while processing command - OSPFv2 instance 0 in VR-ID 1, not configured.",
     "terminal length 0": "OK",
     "terminal width 0": "OK",
     "enable": {
         "name": "enable",
         "prompt": "Password:",
         "password": "admin",
-        "newprompt": "PTP_GM",
+        "newprompt": "PTP_GM#",
         "error_message": "Illegal password"
     }
 }
