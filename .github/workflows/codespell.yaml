@@ -12,7 +12,7 @@ jobs:
       - name: Codespell
         uses: codespell-project/actions-codespell@master
         with:
-          ignore_words_list: test,aks,complies
+          ignore_words_list: test,aks,complies,OLT
           check_filenames: true
           check_hidden: false
           skip: ./.git,./configs
