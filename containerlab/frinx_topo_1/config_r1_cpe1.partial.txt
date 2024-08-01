@@ -1,3 +1,4 @@
+banner exec "Zahorska Bystrica Stadion [48.23961, 17.04140]"
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.10.10 255.255.255.0
  no shutdown
