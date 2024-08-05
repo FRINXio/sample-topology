@@ -236,6 +236,9 @@ configure {
     }
 
     system {
+        location "Rusovce Airport"
+        coordinates "[48.05254, 17.13692]"
+
         ptp {
             admin-state enable
             clock-type boundary

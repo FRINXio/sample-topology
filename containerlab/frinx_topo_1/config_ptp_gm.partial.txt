@@ -32,6 +32,9 @@ configure {
     }
 
     system {
+        location "The Slovak Internet eXchange (SIX)"
+        coordinates "[48.15145, 17.11359]"
+
         ptp {
             admin-state enable
             clock-type master-only

@@ -293,6 +293,9 @@ configure {
     }
 
     system {
+        location "Euronics Senec"
+        coordinates "[48.22102, 17.39742]"
+
         ptp {
             admin-state enable
             clock-type boundary

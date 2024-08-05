@@ -287,6 +287,9 @@ configure {
     }
 
     system {
+        location "Borinka Station"
+        coordinates "[48.25966, 17.09604]"
+
         ptp {
             admin-state enable
             clock-type boundary
