@@ -1,0 +1,21 @@
+hostname R1-OLT
+vlan 10
+    name Customer1
+    description Customer1 branch business network
+vlan 20
+    name Customer2
+    description Customer2 branch business network
+interface 1/1/1
+    no shutdown
+    no routing
+    vlan trunk native 1
+    vlan trunk allowed 10,20
+interface 1/1/2
+    no shutdown
+    no routing
+    vlan access 10
+interface 1/1/3
+    no shutdown
+    no routing
+    vlan access 20
+    exit
