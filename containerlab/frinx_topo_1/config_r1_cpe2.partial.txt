@@ -1,4 +1,4 @@
-banner exec "Boutique Hotel Pri Mlyne [17.05584, 48.32895]"
+snmp-server location "Boutique Hotel Pri Mlyne [17.05584, 48.32895]"
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.20.10 255.255.255.0
  no shutdown

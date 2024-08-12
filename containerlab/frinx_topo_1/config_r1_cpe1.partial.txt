@@ -1,4 +1,4 @@
-banner exec "Zahorska Bystrica Stadion [17.04140, 48.23961]"
+snmp-server location "Zahorska Bystrica Stadion [17.04140, 48.23961]"
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.10.10 255.255.255.0
  no shutdown
