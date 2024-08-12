@@ -18,4 +18,4 @@ interface 1/1/3
     no shutdown
     no routing
     vlan access 20
-    exit
+snmp-server system-location Intersport hotel Stupava [17.046897, 48.279066]

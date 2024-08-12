@@ -1,4 +1,4 @@
-banner exec "Senkvice Primary School [48.29629, 17.34420]"
+snmp-server location "Senkvice Primary School [17.34420, 48.29629]"
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.30.10 255.255.255.0
  no shutdown

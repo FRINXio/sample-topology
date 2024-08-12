@@ -288,7 +288,7 @@ configure {
 
     system {
         location "Borinka Station"
-        coordinates "[48.25966, 17.09604]"
+        coordinates "[17.09604, 48.25966]"
 
         ptp {
             admin-state enable

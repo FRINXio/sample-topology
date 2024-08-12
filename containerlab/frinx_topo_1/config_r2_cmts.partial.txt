@@ -18,4 +18,4 @@ interface 1/1/3
     no shutdown
     no routing
     vlan access 20
-    exit
+snmp-server system-location Euronics Senec [17.39742, 48.22102]
