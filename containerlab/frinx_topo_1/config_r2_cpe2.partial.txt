@@ -1,4 +1,4 @@
-banner exec "Trnava Railway Station [48.37032, 17.58445]"
+banner exec "Trnava Railway Station [17.58445, 48.37032]"
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.40.10 255.255.255.0
  no shutdown

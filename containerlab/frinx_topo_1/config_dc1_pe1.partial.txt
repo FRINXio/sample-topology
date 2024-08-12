@@ -237,7 +237,7 @@ configure {
 
     system {
         location "Rusovce Airport"
-        coordinates "[48.05254, 17.13692]"
+        coordinates "[17.13692, 48.05254]"
 
         ptp {
             admin-state enable

@@ -269,7 +269,7 @@ configure {
     }
     system {
         location "Bratislava Frinx Office"
-        coordinates "[48.14422, 17.14098]"
+        coordinates "[17.14098, 48.14422]"
 
         ptp {
             admin-state enable

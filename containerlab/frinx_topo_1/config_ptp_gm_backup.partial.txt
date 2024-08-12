@@ -33,7 +33,7 @@ configure {
 
     system {
         location "Slovak Telekom"
-        coordinates "[48.14839, 17.14924]"
+        coordinates "[17.14924, 48.14839]"
 
         ptp {
             admin-state enable

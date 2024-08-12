@@ -270,7 +270,7 @@ configure {
 
     system {
         location "Stupava Centrum"
-        coordinates "[48.27588, 17.03212]"
+        coordinates "[17.03212, 48.27588]"
 
         ptp {
             admin-state enable
