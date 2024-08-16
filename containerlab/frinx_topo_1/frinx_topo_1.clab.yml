@@ -80,21 +80,13 @@ topology:
 
     # switch for Region 1
     R1_OLT:
-      kind: aruba_aoscx
-      image: vrnetlab/vr-aoscx:10.12
       mgmt-ipv4: 172.20.20.206
       startup-config: config_r1_olt.partial.txt
-      env:
-        RAM: 4096
 
     # switch for Region 2
     R2_CMTS:
-      kind: aruba_aoscx
-      image: vrnetlab/vr-aoscx:10.12
       mgmt-ipv4: 172.20.20.207
       startup-config: config_r2_cmts.partial.txt
-      env:
-        RAM: 4096
 
   links:
     # Data center 1
