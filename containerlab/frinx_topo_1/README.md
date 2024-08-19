@@ -6,7 +6,7 @@ It consists of MPLS core network, two regions with PE routers and connected CPE 
 Device types:
 - Core, PE, and PTP GM routers: `vrnetlab/vr-sros:22.10.R7`
 - CPE routers: `vrnetlab/vr-xrv:6.0.1`
-- OLT and CMTS switches: `vrnetlab/vr-aoscx:10.12`
+- OLT and CMTS switches: `vrnetlab/vr-sros:22.10.R7`
 
 Configured protocols:
 - LDP
@@ -44,8 +44,8 @@ for each configurable device in the topology:
 | R2_CPE2       | 172.20.20.205 | 22        | 830           |       |
 | PTP_GM        | 172.20.20.9   | 22        | 830           | 57400 |
 | PTP_GM_BACKUP | 172.20.20.8   | 22        | 830           | 57400 |
-| R1_OLT        | 172.20.20.206 | 22        |               |       |
-| R2_CMTS       | 172.20.20.207 | 22        |               |       |
+| R1_OLT        | 172.20.20.206 | 22        | 830           | 57400 |
+| R2_CMTS       | 172.20.20.207 | 22        | 830           | 57400 |
 
 ## Building required docker images
 
@@ -85,16 +85,6 @@ Requirements:
 1. Copy 'iosxrv-k9-6.0.1.vmdk' file to the 'xrv' directory in the vrnetlab repository.
 2. Build the docker image using `make docker-image` command. 
    Built docker image should have 'vrnetlab/vr-xrv:6.0.1' tag.
-
-### vrnetlab/vr-aoscx:10.12
-
-Requirements:
-
-- arubaoscx-disk-image-genericx86-p4-10.12.vmdk image: Download the image from the Aruba support website.
-
-1. Copy 'arubaoscx-disk-image-genericx86-p4-10.12.vmdk' file to the 'aoscx' directory in the vrnetlab repository.
-2. Build the docker image using `make docker-image` command. 
-   Built docker image should have 'vrnetlab/vr-aoscx:10.12' tag.
 
 ## Startup process
 

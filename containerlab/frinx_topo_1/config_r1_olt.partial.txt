@@ -1,21 +1,256 @@
-hostname R1-OLT
-vlan 10
-    name Customer1
-    description Customer1 branch business network
-vlan 20
-    name Customer2
-    description Customer2 branch business network
-interface 1/1/1
-    no shutdown
-    no routing
-    vlan trunk native 1
-    vlan trunk allowed 10,20
-interface 1/1/2
-    no shutdown
-    no routing
-    vlan access 10
-interface 1/1/3
-    no shutdown
-    no routing
-    vlan access 20
-snmp-server system-location Intersport hotel Stupava [17.046897, 48.279066]
+configure {
+    card 1 {
+        mda 1 {
+            sync-e true
+        }
+    }
+    port 1/1/c1 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c2 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c3 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c4 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c5 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c1/1 {
+        admin-state enable
+        ethernet {
+            mode access
+            encap-type dot1q
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c2/1 {
+        admin-state enable
+        ethernet {
+            mode access
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c3/1 {
+        admin-state enable
+        ethernet {
+            mode access
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+    port 1/1/c4/1 {
+        admin-state enable
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    port 1/1/c5/1 {
+        admin-state enable
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+    service {
+        customer "1" {
+            description "R1_CPE1"
+        }
+        customer "2" {
+            description "R1_CPE2"
+        }
+        vpls "Customer1" {
+            admin-state enable
+            description "Customer1 branch business network"
+            service-id 1
+            customer "1"
+            stp {
+                admin-state disable
+            }
+            sap 1/1/c1/1:10 {
+                admin-state enable
+            }
+            sap 1/1/c2/1 {
+                admin-state enable
+            }
+        }
+        vpls "Customer2" {
+            admin-state enable
+            description "Customer2 branch business network"
+            service-id 2
+            customer "2"
+            stp {
+                admin-state disable
+            }
+            sap 1/1/c1/1:20 {
+                admin-state enable
+            }
+            sap 1/1/c3/1 {
+                admin-state enable
+            }
+        }
+    }
+    system {
+        location "Intersport hotel Stupava"
+        coordinates "[17.046897, 48.279066]"
+
+        ptp {
+            admin-state enable
+            clock-type boundary
+            profile ieee1588-2008
+            port 1/1/c1/1 {
+                admin-state enable
+            }
+            port 1/1/c2/1 {
+                admin-state enable
+            }
+            port 1/1/c3/1 {
+                admin-state enable
+            }
+            port 1/1/c4/1 {
+                admin-state enable
+            }
+            port 1/1/c5/1 {
+                admin-state enable
+            }
+        }
+
+        central-frequency-clock {
+            ref1 {
+                admin-state enable
+                source-port 1/1/c1/1
+            }
+        }
+
+        lldp {
+            admin-state enable
+        }
+        grpc {
+            admin-state enable
+            allow-unsecure-connection
+            gnmi {
+                admin-state enable
+                auto-config-save true
+            }
+            rib-api {
+                admin-state enable
+            }
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "grpc" {
+                        default-action permit-all
+                        grpc {
+                            rpc-authorization {
+                                gnmi-capabilities permit
+                                gnmi-get permit
+                                gnmi-set permit
+                                gnmi-subscribe permit
+                                rib-api-getversion permit
+                                rib-api-modify permit
+                            }
+                        }
+                    }
+                }
+            }
+
+            user-params {
+                local-user {
+                    user "admin" {
+                        access {
+                            console true
+                            ftp true
+                            snmp true
+                            netconf true
+                            grpc true
+                        }
+                        console {
+                            member ["administrative" "grpc"]
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
