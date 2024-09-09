@@ -4,9 +4,9 @@ This is a simple topology for testing FRINX topology services.
 It consists of MPLS core network, two regions with PE routers and connected CPE routers.
 
 Device types:
-- Core, PE, and PTP GM routers: `vrnetlab/vr-sros:22.10.R7`
-- CPE routers: `vrnetlab/vr-xrv:6.0.1`
-- OLT and CMTS switches: `vrnetlab/vr-sros:22.10.R7`
+- Core, PE, and PTP GM routers: `frinx/vr-sros:22.10.R7`
+- CPE routers: `frinx/vr-xrv:6.0.1`
+- OLT and CMTS switches: `frinx/vr-sros:22.10.R7`
 
 Configured protocols:
 - LDP
@@ -58,7 +58,7 @@ The last tested versions of vrnetlab and containerlab:
 - vrnetlab: 0.18.1
 - containerlab: 0.56.0
 
-### vrnetlab/vr-sros:22.10.R7
+### frinx/vr-sros:22.10.R7
 
 Requirements:
 - sros-vm-22.10.R7.qcow2 image: Ask Nokia support to provide you with the Qemu disk image.
@@ -73,9 +73,9 @@ Requirements:
    in the vrnetlab repository.
 
 3. Build the docker image using `make docker-image` command.
-   Built docker image should have 'vrnetlab/vr-sros:22.10.R7' tag.
+   Change tag of built docker image to 'frinx/vr-sros:22.10.R7' tag.
 
-### vrnetlab/vr-xrv:6.0.1
+### frinx/vr-xrv:6.0.1
 
 Requirements:
 
@@ -84,7 +84,7 @@ Requirements:
 
 1. Copy 'iosxrv-k9-6.0.1.vmdk' file to the 'xrv' directory in the vrnetlab repository.
 2. Build the docker image using `make docker-image` command. 
-   Built docker image should have 'vrnetlab/vr-xrv:6.0.1' tag.
+   Change tag of built docker image to 'frinx/vr-xrv:6.0.1' tag.
 
 ## Startup process
 
