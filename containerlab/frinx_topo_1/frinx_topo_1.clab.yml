@@ -4,6 +4,7 @@ topology:
   defaults:
     kind: nokia_sros
     image: vrnetlab/vr-sros:22.10.R7
+    license: ../frinx_topo_1/sros.license     
     config:
       vars:
         isis_iid: 1
@@ -51,7 +52,7 @@ topology:
       startup-config: config_r2_pe2.partial.txt
 
     R1_CPE1:
-      image: vrnetlab/vr-xrv:6.0.1
+      image: frinx/vr-xrv:6.0.1
       kind: cisco_xrv
       mgmt-ipv4: 172.20.20.202
       startup-config: config_r1_cpe1.partial.txt
@@ -59,7 +60,7 @@ topology:
         RAM: 4096
 
     R1_CPE2:
-      image: vrnetlab/vr-xrv:6.0.1
+      image: frinx/vr-xrv:6.0.1
       kind: cisco_xrv
       mgmt-ipv4: 172.20.20.203
       startup-config: config_r1_cpe2.partial.txt
@@ -67,7 +68,7 @@ topology:
         RAM: 4096
 
     R2_CPE1:
-      image: vrnetlab/vr-xrv:6.0.1
+      image: frinx/vr-xrv:6.0.1
       kind: cisco_xrv
       mgmt-ipv4: 172.20.20.204
       startup-config: config_r2_cpe1.partial.txt
@@ -75,7 +76,7 @@ topology:
         RAM: 4096
 
     R2_CPE2:
-      image: vrnetlab/vr-xrv:6.0.1
+      image: frinx/vr-xrv:6.0.1
       kind: cisco_xrv
       mgmt-ipv4: 172.20.20.205
       startup-config: config_r2_cpe2.partial.txt
