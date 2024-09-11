@@ -158,6 +158,16 @@ configure {
                 }
             }
         }
+        interface "to-host" {
+            admin-state enable
+            port 1/1/c3/1
+            ipv4 {
+                primary {
+                    address 172.19.0.2
+                    prefix-length 30
+                }
+            }
+        }
         ldp {
             admin-state enable
             interface-parameters {
@@ -229,14 +239,60 @@ configure {
 
             }
         }
+        isis 0 {
+            admin-state enable
+            level-capability 1
+            traffic-engineering true
+            area-address [49.0001]
+            database-export {
+                bgp-ls-identifier {
+                    value 123456789
+                }
+            }
+            traffic-engineering-options {
+                advertise-delay true
+                application-link-attributes {
+                    legacy true
+                }
+            }
+            interface "to-c1" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            interface "to-r1-pe2" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            level 1 {
+                wide-metrics-only true
+            }
+            level 2 {
+                wide-metrics-only true
+            }
+        }
         bgp {
             admin-state enable
             router-id 3.3.3.3
+            link-state-route-export true
+            link-state-route-import true
+            group "SDN" {
+                admin-state enable
+                type internal
+                peer-as 100
+                local-address 172.19.0.2
+                family {
+                    bgp-ls true
+                }
+                local-as {
+                    as-number 100
+                }
+            }
             group "eBGP" {
                 admin-state enable
                 multihop 5
                 next-hop-self true
                 type external
+                peer-as 65002
                 split-horizon true
                 family {
                     ipv4 true
@@ -263,7 +319,24 @@ configure {
             neighbor "5.5.5.5" {
                 admin-state enable
                 group "eBGP"
-                peer-as 65002
+            }
+            neighbor "172.18.0.1" {
+                admin-state enable
+                group "SDN"
+            }
+            neighbor "172.19.0.1" {
+                admin-state disable
+                group "SDN"
+            }
+        }
+        static-routes {
+            route 172.18.0.0/24 route-type unicast {
+                interface "to-host" {
+                    admin-state enable
+                }
+                next-hop "172.19.0.1" {
+                    admin-state enable
+                }
             }
         }
     }
