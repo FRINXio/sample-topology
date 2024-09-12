@@ -4,11 +4,16 @@ topology:
   defaults:
     kind: nokia_sros
     image: frinx/vr-sros:22.10.R7
-    license: ../frinx_topo_1/sros.license     
+    license: ../frinx_topo_1/sros.license
     config:
       vars:
         isis_iid: 1
   nodes:
+    # Host machinee
+    HOST:
+      kind: host
+      exec:
+        - ip addr add local 172.19.0.1/30 dev r1_pe1_eth3
     # PTP & SyncE GMs
     PTP_GM:
       mgmt-ipv4: 172.20.20.9
@@ -113,3 +118,6 @@ topology:
     - endpoints: [R1_OLT:eth3, R1_CPE2:eth1]
     - endpoints: [R2_CMTS:eth2, R2_CPE1:eth1]
     - endpoints: [R2_CMTS:eth3, R2_CPE2:eth1]
+
+    # Create connection between Host and device in containerlab
+    - endpoints: [HOST:r1_pe1_eth3, R1_PE1:eth3]

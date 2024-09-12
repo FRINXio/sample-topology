@@ -267,6 +267,34 @@ configure {
                 }
             }
         }
+        isis 0 {
+            admin-state enable
+            level-capability 1
+            traffic-engineering true
+            area-address [49.0001]
+            interface "to-c1" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            interface "to-dc1-pe1" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            interface "to-r1-pe2" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            interface "to-r2-pe2" {
+                level-capability 1
+                interface-type point-to-point
+            }
+            level 1 {
+                wide-metrics-only true
+            }
+            level 2 {
+                wide-metrics-only true
+            }
+        }
     }
     
     system {

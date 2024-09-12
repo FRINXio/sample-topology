@@ -127,78 +127,57 @@ configure {
             }
         }
     }
-    
+
     router "Base" {
+        autonomous-system 65001
         interface "system" {
             ipv4 {
                 primary {
-                    address 1.1.1.1
+                    address 3.3.3.3
                     prefix-length 32
                 }
             }
         }
-        interface "to-c2" {
-            admin-state enable
-            port 1/1/c1/1
-            ipv4 {
-                primary {
-                    address 10.10.0.0
-                    prefix-length 31
-                }
-            }
-        }
-        interface "to-r1-pe1" {
-            admin-state enable
-            port 1/1/c3/1
-            ipv4 {
-                primary {
-                    address 10.20.0.0
-                    prefix-length 31
-                }
-            }
-        }
-        interface "to-r2-pe1" {
-            admin-state enable
-            port 1/1/c4/1
-            ipv4 {
-                primary {
-                    address 10.20.0.4
-                    prefix-length 31
-                }
-            }
-        }
-        interface "to-dc1-pe1" {
+        interface "to-c1" {
             admin-state enable
             port 1/1/c2/1
             ipv4 {
                 primary {
-                    address 10.20.0.8
+                    address 10.20.0.1
                     prefix-length 31
+                }
+            }
+        }
+        interface "to-r1-pe2" {
+            admin-state enable
+            port 1/1/c1/1
+            ipv4 {
+                primary {
+                    address 10.30.0.0
+                    prefix-length 31
+                }
+            }
+        }
+        interface "to-host" {
+            admin-state enable
+            port 1/1/c3/1
+            ipv4 {
+                primary {
+                    address 172.19.0.2
+                    prefix-length 30
                 }
             }
         }
         ldp {
             admin-state enable
             interface-parameters {
-                interface "to-c2" {
+                interface "to-c1" {
                     admin-state enable
                     ipv4 {
                         admin-state enable
                     }
                 }
-                interface "to-r1-pe1" {
-                    admin-state enable
-                    ipv4 {
-                        admin-state enable
-                    }
-                }
-                interface "to-r2-pe1" {
-                    admin-state enable
-                    ipv4 {
-                        admin-state enable
-                    }
-                }
-                interface "to-dc1-pe1" {
+                interface "to-r1-pe2" {
                     admin-state enable
                     ipv4 {
                         admin-state enable
@@ -208,37 +187,38 @@ configure {
         }
         rsvp {
             admin-state enable
-            interface "to-c2" {
+            interface "to-c1" {
                 admin-state enable
             }
-            interface "to-r1-pe1" {
-                admin-state enable
-            }
-            interface "to-r2-pe1" {
-                admin-state enable
-            }
-            interface "to-dc1-pe1" {
+            interface "to-r1-pe2" {
                 admin-state enable
             }
         }
         mpls {
             admin-state enable
-            interface "to-c2" {
+            interface "to-c1" {
                 admin-state enable
             }
-            interface "to-r1-pe1" {
+            interface "to-r1-pe2" {
                 admin-state enable
             }
-            interface "to-r2-pe1" {
+            path "PATH_LOOSE" {
                 admin-state enable
             }
-            interface "to-dc1-pe1" {
+            lsp "to-r2-pe2" {
                 admin-state enable
+                type p2p-rsvp
+                from 3.3.3.3
+                to 6.6.6.6
+                path-computation-method local-cspf
+                primary "PATH_LOOSE" {
+                    admin-state enable
+                }
             }
         }
         ospf 0 {
             admin-state enable
-            router-id 1.1.1.1
+            router-id 3.3.3.3
             traffic-engineering true
             traffic-engineering-options {
                 sr-te application-specific-link-attributes
@@ -248,22 +228,15 @@ configure {
                 interface "system" {
                     admin-state enable
                 }
-                interface "to-c2" {
+                interface "to-c1" {
                     admin-state enable
                     interface-type point-to-point
                 }
-                interface "to-r1-pe1" {
+                interface "to-r1-pe2" {
                     admin-state enable
                     interface-type point-to-point
                 }
-                interface "to-r2-pe1" {
-                    admin-state enable
-                    interface-type point-to-point
-                }
-                interface "to-dc1-pe1" {
-                    admin-state enable
-                    interface-type point-to-point
-                }
+
             }
         }
         isis 0 {
@@ -271,19 +244,22 @@ configure {
             level-capability 1
             traffic-engineering true
             area-address [49.0001]
-            interface "to-c2" {
+            database-export {
+                bgp-ls-identifier {
+                    value 123456789
+                }
+            }
+            traffic-engineering-options {
+                advertise-delay true
+                application-link-attributes {
+                    legacy true
+                }
+            }
+            interface "to-c1" {
                 level-capability 1
                 interface-type point-to-point
             }
-            interface "to-dc1-pe1" {
-                level-capability 1
-                interface-type point-to-point
-            }
-            interface "to-r1-pe1" {
-                level-capability 1
-                interface-type point-to-point
-            }
-            interface "to-r2-pe1" {
+            interface "to-r1-pe2" {
                 level-capability 1
                 interface-type point-to-point
             }
@@ -294,10 +270,76 @@ configure {
                 wide-metrics-only true
             }
         }
+        bgp {
+            admin-state enable
+            router-id 3.3.3.3
+            link-state-route-export true
+            link-state-route-import true
+            group "SDN" {
+                admin-state enable
+                type internal
+                peer-as 100
+                local-address 172.19.0.2
+                family {
+                    bgp-ls true
+                }
+                local-as {
+                    as-number $R1_PE1_LOCAL_AS_NUMBER
+                }
+            }
+            group "eBGP" {
+                admin-state enable
+                multihop 5
+                next-hop-self true
+                type external
+                peer-as 65002
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+            }
+            group "iBGP" {
+                admin-state enable
+                next-hop-self true
+                type internal
+                peer-as 65001
+                local-address 3.3.3.3
+                split-horizon true
+                family {
+                    ipv4 true
+                }
+                cluster {
+                    cluster-id 0.0.0.100
+                }
+            }
+            neighbor "4.4.4.4" {
+                admin-state enable
+                group "iBGP"
+            }
+            neighbor "5.5.5.5" {
+                admin-state enable
+                group "eBGP"
+            }
+            neighbor "$R1_PE1_NEIGHBOR_IP" {
+                admin-state enable
+                group "SDN"
+            }
+        }
+        static-routes {
+            route $R1_PE1_STATIC_ROUTE route-type unicast {
+                interface "to-host" {
+                    admin-state enable
+                }
+                next-hop "172.19.0.1" {
+                    admin-state enable
+                }
+            }
+        }
     }
+
     system {
-        location "Bratislava Frinx Office"
-        coordinates "[17.14098, 48.14422]"
+        location "Stupava Centrum"
+        coordinates "[17.03212, 48.27588]"
 
         ptp {
             admin-state enable
@@ -323,7 +365,7 @@ configure {
         central-frequency-clock {
             ref1 {
                 admin-state enable
-                source-port 1/1/c5/1
+                source-port 1/1/c2/1
             }
         }
 
