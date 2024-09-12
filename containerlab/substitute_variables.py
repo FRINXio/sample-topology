@@ -41,9 +41,9 @@ def replace_variables(template_file, device_name, script_path):
         print(
             f"[WARNING] Undefined environment variables in {template_file} for device {device_name.upper()}: {', '.join(undefined_vars)}")
 
-    # Save the updated configuration back as the new configuration file (on the same position as the script is)
+    # Save the updated configuration back as the new configuration file
     base_dir = os.path.dirname(template_file)  # This will give the template directory
-    parent_dir = os.path.dirname(base_dir)  # This will give the the directory the template folder is in and other partial configs are in.
+    parent_dir = os.path.dirname(base_dir)  # This will give the directory the template folder is in and other partial configs are in.
     complete_path = os.path.join(script_path, parent_dir)
     file_path = os.path.join(complete_path, f'config_{device_name}.partial.txt')
     with open(file_path, 'w') as file:
