@@ -284,7 +284,7 @@ configure {
                     bgp-ls true
                 }
                 local-as {
-                    as-number 100
+                    as-number $R1_PE1_LOCAL_AS_NUMBER
                 }
             }
             group "eBGP" {
@@ -320,13 +320,13 @@ configure {
                 admin-state enable
                 group "eBGP"
             }
-            neighbor "172.18.0.1" {
+            neighbor "$R1_PE1_NEIGHBOR_IP" {
                 admin-state enable
                 group "SDN"
             }
         }
         static-routes {
-            route 172.18.0.0/24 route-type unicast {
+            route $R1_PE1_STATIC_ROUTE route-type unicast {
                 interface "to-host" {
                     admin-state enable
                 }

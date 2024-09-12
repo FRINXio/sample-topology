@@ -101,3 +101,26 @@ To stop the topology, run the following command:
 ```bash
 sudo containerlab destroy
 ```
+
+### Template configurations
+
+You can specify variables that will be used in configuration files using environment variables.
+Navigate to the `device_templates` folder. All templates follow the `config_<device_name>.template.txt` pattern.
+You can define as many variables as you need. The variables follow the `$VARIABLE_NAME` pattern. R1_PE1 device uses
+a variable to set the neighbor IP address `neighbor $R1_PE1_NEIGHBOR_IP`. The variable then needs to be present in the
+environment variables (dotenv file).
+```shell
+export R1_PE1_NEIGHBOR_IP=172.18.0.1
+```
+After setting up the template and setting up all the environment variables, use the script `substitute_variables.py`
+```shell
+python3 substitute_variables.py device_templates/config_r1_pe1.template.txt
+```
+Multiple templates can be added. All of these templates are read, the variables are substituted and the `config_<device_name>.partial.txt`
+files are updated.
+
+Parameters defined in dotenv are 1 to 1, so if you want some extra escaping, e.g. putting the variable in quotes, define
+it in the template like `"$VARIABLE_NAME"`. To use all variables defined in dotenv, use the following:
+```shell
+export $(grep -v '^#' .env | xargs -d '\n')
+```
