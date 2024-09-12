@@ -124,3 +124,10 @@ it in the template like `"$VARIABLE_NAME"`. To use all variables defined in dote
 ```shell
 export $(grep -v '^#' .env | xargs -d '\n')
 ```
+If the variables are in a subfolder (E.g. in `frinx_topo_1`) simply adjust the script like this:
+```shell
+export $(grep -v '^#' frinx_topo_1/.env | xargs -d '\n')
+```
+
+Warning: This will work only when the templates are under `templates/config_<device_name>.template.txt` and `config_<device_name>.partial.txt` 
+are on the same level as the templates' directory.

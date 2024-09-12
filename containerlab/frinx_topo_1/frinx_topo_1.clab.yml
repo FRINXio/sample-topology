@@ -3,7 +3,7 @@ name: frinx_topo_1
 topology:
   defaults:
     kind: nokia_sros
-    image: vrnetlab/vr-sros:22.10.R7
+    image: frinx/vr-sros:22.10.R7
     license: ../frinx_topo_1/sros.license
     config:
       vars:
@@ -13,7 +13,6 @@ topology:
     HOST:
       kind: host
       exec:
-        - ip link set dev enp0s3 up
         - ip addr add local 172.19.0.1/30 dev r1_pe1_eth3
     # PTP & SyncE GMs
     PTP_GM:
