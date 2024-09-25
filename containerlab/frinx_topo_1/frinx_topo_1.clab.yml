@@ -3,7 +3,7 @@ name: frinx_topo_1
 topology:
   defaults:
     kind: nokia_sros
-    image: frinx/vr-sros:22.10.R7
+    image: vrnetlab/vr-sros:22.10.R7
     license: ../frinx_topo_1/sros.license
     config:
       vars:
