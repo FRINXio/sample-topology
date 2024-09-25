@@ -226,9 +226,11 @@ configure {
             admin-state enable
             interface "to-c1" {
                 admin-state enable
+                srlg-group "GROUP_2" { }
             }
             interface "to-r1-pe2" {
                 admin-state enable
+                srlg-group "GROUP_4" { }
             }
             interface "to-r2-pe2" {
                 admin-state enable
@@ -296,7 +298,16 @@ configure {
             }
         }
     }
-    
+    routing-options {
+        if-attribute {
+            srlg-group "GROUP_2" {
+                value 2
+            }
+            srlg-group "GROUP_4" {
+                value 4
+            }
+        }
+    }
     system {
         location "Bratislava Frinx Office"
         coordinates "[17.14098, 48.14422]"

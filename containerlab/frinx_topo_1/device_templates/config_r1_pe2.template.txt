@@ -220,9 +220,11 @@ configure {
             admin-state enable
             interface "to-c2" {
                 admin-state enable
+                srlg-group "GROUP_4" { }
             }
             interface "to-r1-pe1" {
                 admin-state enable
+                srlg-group "GROUP_1" { }
             }
             path "PATH_LOOSE" {
                 admin-state enable
@@ -349,7 +351,17 @@ configure {
             }
         }
     }
+    routing-options {
+        if-attribute {
+            srlg-group "GROUP_1" {
+                value 1
+            }
+            srlg-group "GROUP_4" {
+                value 4
+            }
+        }
 
+    }
     system {
         location "Borinka Station"
         coordinates "[17.09604, 48.25966]"

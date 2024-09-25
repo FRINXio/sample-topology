@@ -198,9 +198,11 @@ configure {
             admin-state enable
             interface "to-c1" {
                 admin-state enable
+                srlg-group "GROUP_3" { }
             }
             interface "to-r1-pe2" {
                 admin-state enable
+                srlg-group "GROUP_1" { }
             }
             path "PATH_LOOSE" {
                 admin-state enable
@@ -336,7 +338,16 @@ configure {
             }
         }
     }
-
+    routing-options {
+        if-attribute {
+            srlg-group "GROUP_1" {
+                value 1
+            }
+            srlg-group "GROUP_3" {
+                value 3
+            }
+        }
+    }
     system {
         location "Stupava Centrum"
         coordinates "[17.03212, 48.27588]"
