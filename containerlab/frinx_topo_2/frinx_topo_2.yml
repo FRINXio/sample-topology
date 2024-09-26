@@ -1,0 +1,93 @@
+name: frinx_topo_2
+
+topology:
+  defaults:
+    kind: nokia_sros
+    image: vrnetlab/vr-sros:22.10.R1
+    license: ../sros.license     
+    config:
+      vars:
+        isis_iid: 1
+  nodes:
+    ptp_grandmaster:
+      mgmt-ipv4: 172.20.20.9
+      startup-config: ptp_grandmaster.partial.txt
+      ports:
+        - 1830:830
+        - 10022:22
+    ptp_grandmaster_backup:
+      mgmt-ipv4: 172.20.20.8
+      startup-config: ptp_grandmaster_backup.partial.txt
+      ports:
+        - 2830:830
+        - 10023:22
+    core1:
+      mgmt-ipv4: 172.20.20.11
+      startup-config: core1.partial.txt
+      ports:
+        - 3830:830
+        - 10024:22
+    core2:
+      mgmt-ipv4: 172.20.20.12
+      startup-config: core2.partial.txt
+      ports:
+        - 4830:830
+        - 10025:22
+    PE:
+      mgmt-ipv4: 172.20.20.13
+      startup-config: PE.partial.txt
+      ports:
+        - 5830:830
+        - 10026:22
+    PE2:
+      mgmt-ipv4: 172.20.20.14
+      startup-config: core2.partial.txt
+      ports:
+        - 6830:830
+        - 10027:22
+    PE3:
+      mgmt-ipv4: 172.20.20.15
+      startup-config: core2.partial.txt
+      ports:
+        - 7830:830
+        - 10028:22
+    PE4:
+      mgmt-ipv4: 172.20.20.16
+      startup-config: core2.partial.txt
+      ports:
+        - 8830:830
+        - 10029:22
+    PE5:
+      mgmt-ipv4: 172.20.20.17
+      startup-config: core2.partial.txt
+      ports:
+        - 9830:830
+        - 10030:22
+
+  links:
+    - endpoints: [ptp_grandmaster:eth2, host:ptp_grandmaster-eth2]
+    - endpoints: [ptp_grandmaster_backup:eth2, host:ptp_grandmaster_backup-eth2]
+    - endpoints: [core1:eth3, host:core1-eth3]
+    - endpoints: [core2:eth3, host:core2-eth3]
+    - endpoints: [PE:eth3, host:PE-eth3]
+    - endpoints: [PE2:eth3, host:PE2-eth3]
+    - endpoints: [PE3:eth3, host:PE3-eth3]
+    - endpoints: [PE4:eth3, host:PE4-eth3]
+    - endpoints: [PE5:eth3, host:PE5-eth3]
+    - endpoints: [PE:eth1, core1:eth4]
+    - endpoints: [PE:eth2, core2:eth4]
+    - endpoints: [PE2:eth1, core1:eth5]
+    - endpoints: [PE3:eth1, core2:eth5]
+    - endpoints: [PE4:eth1, core1:eth6]
+    - endpoints: [PE5:eth1, core2:eth6]
+    - endpoints: [PE2:eth2, PE3:eth2]
+    - endpoints: [PE4:eth2, PE5:eth2]
+    - endpoints: [core1:eth1, core2:eth1]
+      vars:
+        port: [1/1/c1/1, 1/1/c1/1]
+    - endpoints: [ptp_grandmaster:eth1, core1:eth2]
+      vars:
+        port: [1/1/c1/1, 1/1/c2/1]
+    - endpoints: [ptp_grandmaster_backup:eth1, core2:eth2]
+      vars:
+        port: [1/1/c1/1, 1/1/c2/1]

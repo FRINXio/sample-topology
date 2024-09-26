@@ -1,0 +1,107 @@
+configure {
+    card 1 {
+        mda 1 {
+            sync-e true
+        }
+    }
+
+    port 1/1/c1 {
+        admin-state enable
+        connector {
+            breakout c4-10g
+        }
+    }
+
+    port 1/1/c1/1 {
+        admin-state enable
+        description "Towards core1"
+        ethernet {
+            lldp {
+                dest-mac nearest-bridge {
+                    receive true
+                    transmit true
+                    tx-tlvs {
+                        port-desc true
+                        sys-name true
+                        sys-desc true
+                        sys-cap true
+                    }
+                }
+            }
+        }
+    }
+
+    system {
+        ptp {
+            admin-state enable
+            clock-type master-only
+            profile ieee1588-2008
+            priority2 1
+            port 1/1/c1/1 {
+                admin-state enable
+            }
+        }
+        central-frequency-clock {
+            bits {
+                input {
+                    admin-state enable
+                }
+                output {
+                    admin-state enable
+                }
+            }
+        }
+
+        lldp {
+            admin-state enable
+        }
+        grpc {
+            admin-state enable
+            allow-unsecure-connection
+            gnmi {
+                admin-state enable
+                auto-config-save true
+            }
+            rib-api {
+                admin-state enable
+            }
+        }
+        security {
+            aaa {
+                local-profiles {
+                    profile "grpc" {
+                        default-action permit-all
+                        grpc {
+                            rpc-authorization {
+                                gnmi-capabilities permit
+                                gnmi-get permit
+                                gnmi-set permit
+                                gnmi-subscribe permit
+                                rib-api-getversion permit
+                                rib-api-modify permit
+                            }
+                        }
+                    }
+                }
+            }
+
+            user-params {
+                local-user {
+                    user "admin" {
+                        access {
+                            console true
+                            ftp true
+                            snmp true
+                            netconf true
+                            grpc true
+                        }
+                        console {
+                            member ["administrative" "grpc"]
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
