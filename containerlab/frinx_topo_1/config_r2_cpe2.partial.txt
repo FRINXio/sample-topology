@@ -1,4 +1,5 @@
 snmp-server location "Trnava Railway Station [17.58445, 48.37032]"
+snmp-server community public RW
 interface GigabitEthernet0/0/0/0
  ipv4 address 172.16.40.10 255.255.255.0
  no shutdown
